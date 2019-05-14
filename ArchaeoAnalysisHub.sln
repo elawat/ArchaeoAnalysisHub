@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchaeoAnalysisHub", "ArchaeoAnalysisHub\ArchaeoAnalysisHub.csproj", "{4F826930-0C1C-4959-90EA-2F4790DE43EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchaeoAnalysisHub.Tests", "ArchaeoAnalysisHub.Tests\ArchaeoAnalysisHub.Tests.csproj", "{3F976007-F045-4BCE-B5B7-077EE6C8E431}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F826930-0C1C-4959-90EA-2F4790DE43EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F826930-0C1C-4959-90EA-2F4790DE43EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F826930-0C1C-4959-90EA-2F4790DE43EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F826930-0C1C-4959-90EA-2F4790DE43EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F976007-F045-4BCE-B5B7-077EE6C8E431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F976007-F045-4BCE-B5B7-077EE6C8E431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F976007-F045-4BCE-B5B7-077EE6C8E431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F976007-F045-4BCE-B5B7-077EE6C8E431}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0FE0AF7-4815-4395-8E0B-CCB14662CD38}
+	EndGlobalSection
+EndGlobal
