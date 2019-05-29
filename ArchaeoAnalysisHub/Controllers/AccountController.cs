@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ArchaeoAnalysisHub.Models;
+using ArchaeoAnalysisHub.ViewModels;
 
 namespace ArchaeoAnalysisHub.Controllers
 {

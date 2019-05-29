@@ -22,3 +22,99 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 20px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 80px;
+}
+
+/* Bootstrap Overrides*/
+.popover {
+    box-shadow: none;
+}
+
+.navbar-inverse {
+    background-color: #545680;
+    border-color: #545680;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: rgba(121, 125, 163, 0.55);
+    }
+
+    .navbar-inverse .notifications .badge {
+        position: absolute;
+        top: 8px;
+        right: -1px;
+        background-color: #a80a0a;
+    }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    height: 44px;
+    border-radius: 9px;
+}
+
+    .form-control:focus {
+        border-color: #2196f3;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+.btn {
+    /*font-size: 17px;
+    padding: 7px 20px;*/
+    border-radius: 9px;
+}
+
+
+/* Page-level styles*/
+body {
+    font-family: Lato, Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+
+.list-img-col > img {
+    width: 100%;
+}
+
+.list-right-menu > button {
+    width: 80%;
+}
+
+.wordcloud {
+
+}

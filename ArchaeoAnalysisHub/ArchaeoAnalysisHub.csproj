@@ -45,10 +45,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -101,6 +106,30 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.0.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.2.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.3.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc5.1.3.0\lib\net45\Unity.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -194,33 +223,241 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="BLL\AnalysesService.cs" />
+    <Compile Include="BLL\Interfaces\IAnalysesHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalysesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SamplesController.cs" />
+    <Compile Include="Data\ApplicationDbContext.cs" />
+    <Compile Include="Data\IApplicationDbContext.cs" />
+    <Compile Include="Data\Repository\AnalysisRepository.cs" />
+    <Compile Include="Data\Repository\Interfaces\IAnalysisRepository.cs" />
+    <Compile Include="Data\Repository\Interfaces\ISampleRepository.cs" />
+    <Compile Include="Data\Repository\SampleRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905141704463_InitialMigration.cs" />
+    <Compile Include="Migrations\201905141704463_InitialMigration.Designer.cs">
+      <DependentUpon>201905141704463_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141728331_AddedSampleModel.cs" />
+    <Compile Include="Migrations\201905141728331_AddedSampleModel.Designer.cs">
+      <DependentUpon>201905141728331_AddedSampleModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151552429_AddedArtifactModel.cs" />
+    <Compile Include="Migrations\201905151552429_AddedArtifactModel.Designer.cs">
+      <DependentUpon>201905151552429_AddedArtifactModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151602403_AddedAnalysisModel.cs" />
+    <Compile Include="Migrations\201905151602403_AddedAnalysisModel.Designer.cs">
+      <DependentUpon>201905151602403_AddedAnalysisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151605091_RenamedAnalysisTypeModel.cs" />
+    <Compile Include="Migrations\201905151605091_RenamedAnalysisTypeModel.Designer.cs">
+      <DependentUpon>201905151605091_RenamedAnalysisTypeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151632020_AddedAnalysisDataPointModel.cs" />
+    <Compile Include="Migrations\201905151632020_AddedAnalysisDataPointModel.Designer.cs">
+      <DependentUpon>201905151632020_AddedAnalysisDataPointModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180835383_AddedSampleAnalysisRelation.cs" />
+    <Compile Include="Migrations\201905180835383_AddedSampleAnalysisRelation.Designer.cs">
+      <DependentUpon>201905180835383_AddedSampleAnalysisRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191759461_AddedOwners.cs" />
+    <Compile Include="Migrations\201905191759461_AddedOwners.Designer.cs">
+      <DependentUpon>201905191759461_AddedOwners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191804481_AddedIsPublic.cs" />
+    <Compile Include="Migrations\201905191804481_AddedIsPublic.Designer.cs">
+      <DependentUpon>201905191804481_AddedIsPublic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191805551_AddedImageModel.cs" />
+    <Compile Include="Migrations\201905191805551_AddedImageModel.Designer.cs">
+      <DependentUpon>201905191805551_AddedImageModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191807102_AddedDepicting.cs" />
+    <Compile Include="Migrations\201905191807102_AddedDepicting.Designer.cs">
+      <DependentUpon>201905191807102_AddedDepicting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191813503_AddedImageType.cs" />
+    <Compile Include="Migrations\201905191813503_AddedImageType.Designer.cs">
+      <DependentUpon>201905191813503_AddedImageType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905201855226_AddedNameToImage.cs" />
+    <Compile Include="Migrations\201905201855226_AddedNameToImage.Designer.cs">
+      <DependentUpon>201905201855226_AddedNameToImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905201904064_RemovedDepicting.cs" />
+    <Compile Include="Migrations\201905201904064_RemovedDepicting.Designer.cs">
+      <DependentUpon>201905201904064_RemovedDepicting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905201906083_AddedImageIdsToAnalysis.cs" />
+    <Compile Include="Migrations\201905201906083_AddedImageIdsToAnalysis.Designer.cs">
+      <DependentUpon>201905201906083_AddedImageIdsToAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905201916532_ChangedUrlToString.cs" />
+    <Compile Include="Migrations\201905201916532_ChangedUrlToString.Designer.cs">
+      <DependentUpon>201905201916532_ChangedUrlToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905211843159_ChangedDataTypesInAnalysisModel.cs" />
+    <Compile Include="Migrations\201905211843159_ChangedDataTypesInAnalysisModel.Designer.cs">
+      <DependentUpon>201905211843159_ChangedDataTypesInAnalysisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251545529_AddedImagesToAnalysis.cs" />
+    <Compile Include="Migrations\201905251545529_AddedImagesToAnalysis.Designer.cs">
+      <DependentUpon>201905251545529_AddedImagesToAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905291548413_AddedNameToUser.cs" />
+    <Compile Include="Migrations\201905291548413_AddedNameToUser.Designer.cs">
+      <DependentUpon>201905291548413_AddedNameToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905291550112_AddedRequiredToName.cs" />
+    <Compile Include="Migrations\201905291550112_AddedRequiredToName.Designer.cs">
+      <DependentUpon>201905291550112_AddedRequiredToName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905292136572_AddedLocationToArtifact.cs" />
+    <Compile Include="Migrations\201905292136572_AddedLocationToArtifact.Designer.cs">
+      <DependentUpon>201905292136572_AddedLocationToArtifact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Analysis.cs" />
+    <Compile Include="Models\AnalysisDataPoint.cs" />
+    <Compile Include="Models\Artifact.cs" />
+    <Compile Include="Models\ArtifactType.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\ImageType.cs" />
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SampleType.cs" />
+    <Compile Include="Models\AnalysisType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AnalysesViewModel.cs" />
+    <Compile Include="ViewModels\AnalysisSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jqcloud.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\img_PB-24a_pb_1_1.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_10.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_11.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_12.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_13.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_14.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_15.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_16.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_17.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_18.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_19.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_2.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_20.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_21.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_22.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_23.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_24.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_25.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_26.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_27.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_28.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_29.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_3.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_30.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_31.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_4.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_5.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_6.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_7.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_8.jpg" />
+    <Content Include="Images\img_PB-24a_pb_1_9.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_1.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_10.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_11.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_12.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_13.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_14.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_2.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_3.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_4.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_5.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_6.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_7.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_8.jpg" />
+    <Content Include="Images\img_PB-24b_pb_1_9.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_1.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_10.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_11.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_12.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_13.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_14.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_15.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_16.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_2.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_3.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_4.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_5.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_6.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_7.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_8.jpg" />
+    <Content Include="Images\img_PB-34a_pb_1_9.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_1.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_10.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_11.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_12.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_13.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_14.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_15.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_16.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_17.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_18.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_19.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_2.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_20.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_21.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_22.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_23.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_3.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_4.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_5.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_6.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_7.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_8.jpg" />
+    <Content Include="Images\img_PB-35a_pb_1_9.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_1.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_10.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_11.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_12.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_13.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_14.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_15.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_2.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_3.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_4.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_5.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_6.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_7.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_8.jpg" />
+    <Content Include="Images\img_PB-5_pb_1_9.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jqcloud.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -242,9 +479,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -265,9 +499,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Analyses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Analyses\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -281,6 +517,71 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905141704463_InitialMigration.resx">
+      <DependentUpon>201905141704463_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141728331_AddedSampleModel.resx">
+      <DependentUpon>201905141728331_AddedSampleModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151552429_AddedArtifactModel.resx">
+      <DependentUpon>201905151552429_AddedArtifactModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151602403_AddedAnalysisModel.resx">
+      <DependentUpon>201905151602403_AddedAnalysisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151605091_RenamedAnalysisTypeModel.resx">
+      <DependentUpon>201905151605091_RenamedAnalysisTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151632020_AddedAnalysisDataPointModel.resx">
+      <DependentUpon>201905151632020_AddedAnalysisDataPointModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180835383_AddedSampleAnalysisRelation.resx">
+      <DependentUpon>201905180835383_AddedSampleAnalysisRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191759461_AddedOwners.resx">
+      <DependentUpon>201905191759461_AddedOwners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191804481_AddedIsPublic.resx">
+      <DependentUpon>201905191804481_AddedIsPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191805551_AddedImageModel.resx">
+      <DependentUpon>201905191805551_AddedImageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191807102_AddedDepicting.resx">
+      <DependentUpon>201905191807102_AddedDepicting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191813503_AddedImageType.resx">
+      <DependentUpon>201905191813503_AddedImageType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905201855226_AddedNameToImage.resx">
+      <DependentUpon>201905201855226_AddedNameToImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905201904064_RemovedDepicting.resx">
+      <DependentUpon>201905201904064_RemovedDepicting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905201906083_AddedImageIdsToAnalysis.resx">
+      <DependentUpon>201905201906083_AddedImageIdsToAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905201916532_ChangedUrlToString.resx">
+      <DependentUpon>201905201916532_ChangedUrlToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211843159_ChangedDataTypesInAnalysisModel.resx">
+      <DependentUpon>201905211843159_ChangedDataTypesInAnalysisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251545529_AddedImagesToAnalysis.resx">
+      <DependentUpon>201905251545529_AddedImagesToAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291548413_AddedNameToUser.resx">
+      <DependentUpon>201905291548413_AddedNameToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291550112_AddedRequiredToName.resx">
+      <DependentUpon>201905291550112_AddedRequiredToName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905292136572_AddedLocationToArtifact.resx">
+      <DependentUpon>201905292136572_AddedLocationToArtifact.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

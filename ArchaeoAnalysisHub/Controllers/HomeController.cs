@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ArchaeoAnalysisHub.BLL.Interfaces;
+using ArchaeoAnalysisHub.Data.Repository.Interfaces;
+using ArchaeoAnalysisHub.ViewModels;
 using System.Web.Mvc;
+
 
 namespace ArchaeoAnalysisHub.Controllers
 {
     public class HomeController : Controller
     {
+        private IAnalysesHandler analysesHandler;
+
+        public HomeController(IAnalysesHandler analysesHandler)
+        {
+            this.analysesHandler = analysesHandler;
+        }
         public ActionResult Index()
         {
-            return View();
+            var analyses = analysesHandler.GetSummary();
+            var viewModel = new AnalysesViewModel()
+            {
+                Analyses = analyses,
+                Heading = "Analyses"
+            };
+
+            return View("Analyses", viewModel);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }
