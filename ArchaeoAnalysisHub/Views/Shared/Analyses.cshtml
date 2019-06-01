@@ -18,7 +18,10 @@
                     <img src=@analysis.GeneralImage.Url alt=@analysis.GeneralImage.Name>
                 </div>
                 <div class="col-sm-5">
-                    <h4 class="card-title">Artifact: @analysis.Sample.Artifact.Name</h4>
+                    <h4 class="card-title">
+                        Artifact:
+                        @Html.ActionLink(analysis.Sample.Artifact.Name, "Details", "Artifacts", new { id = analysis.Sample.Artifact.Id }, new { @class = "link-details" })
+                    </h4>
                     <p>by @analysis.Sample.Artifact.Owner.Name | @analysis.Sample.Artifact.Country</p>
                     <p>@analysis.Sample.Artifact.ArtifactType.Name</p>
                     <p>sample type: @analysis.Sample.SampleType.Name</p>

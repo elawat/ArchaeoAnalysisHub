@@ -228,15 +228,15 @@
     <Compile Include="BLL\Interfaces\IAnalysesHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalysesController.cs" />
+    <Compile Include="Controllers\ArtifactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\IApplicationDbContext.cs" />
     <Compile Include="Data\Repository\AnalysisRepository.cs" />
+    <Compile Include="Data\Repository\ArtifactRepository.cs" />
     <Compile Include="Data\Repository\Interfaces\IAnalysisRepository.cs" />
-    <Compile Include="Data\Repository\Interfaces\ISampleRepository.cs" />
-    <Compile Include="Data\Repository\SampleRepository.cs" />
+    <Compile Include="Data\Repository\Interfaces\IArtifactRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -341,6 +341,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalysesViewModel.cs" />
     <Compile Include="ViewModels\AnalysisSummary.cs" />
+    <Compile Include="ViewModels\ArtifactFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -500,10 +501,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Analyses.cshtml" />
+    <Content Include="Views\Artifacts\ArtifactForm.cshtml" />
+    <Content Include="Views\Artifacts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Analyses\" />
+    <Folder Include="Views\Artifact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

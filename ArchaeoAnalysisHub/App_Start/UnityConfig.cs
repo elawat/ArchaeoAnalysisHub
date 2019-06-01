@@ -24,10 +24,11 @@ namespace ArchaeoAnalysisHub
             container.RegisterType<ManageController>(new InjectionConstructor());
 
             container.RegisterType<IApplicationDbContext, ApplicationDbContext>();
-            container.RegisterType<ISampleRepository, SampleRepository>();
             container.RegisterType<IAnalysisRepository, AnalysisRepository>();
+            container.RegisterType<IArtifactRepository, ArtifactRepository>();
 
             container.RegisterType<IAnalysesHandler, AnalysesService>();
+
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

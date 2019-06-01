@@ -106,6 +106,10 @@ body {
     font-size: 17px;
 }
 
+a {
+    text-decoration: none;
+}
+
 
 .list-img-col > img {
     width: 100%;
@@ -115,6 +119,11 @@ body {
     width: 80%;
 }
 
-.wordcloud {
+.property {
+    color: grey;
+    font-size: x-small;
+}
 
+.link-details {
+    margin: 5px 5px 0 5px;
 }
