@@ -1,0 +1,61 @@
+﻿
+@model ArchaeoAnalysisHub.ViewModels.SampleFormViewModel
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Artifact.Name | sample @Model.Id</h2>
+<div class="row">
+    <div class="col-md-5">
+        <div class="property">@Html.DisplayNameFor(m => m.SampleType.Name):</div>
+        <div>@Html.DisplayFor(m => m.SampleType.Name)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.Artifact.Name):</div>
+        <div>@Html.DisplayFor(m => m.Artifact.Name)</div>
+        <div class="property">Added by:</div>
+        <div>@Html.DisplayFor(m => m.Owner.Name)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.IsAnalysed):</div>
+        <div>@Html.DisplayFor(m => m.IsAnalysed)</div>
+    </div>
+    <div class="col-md-2">
+        @Html.ActionLink("Edit", "Edit", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
+        |
+        @Html.ActionLink("Delete", "Delete", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <h3>Analyses</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(m => m.Analyses.FirstOrDefault().Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => m.Analyses.FirstOrDefault().AnalysisType.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => m.Analyses.FirstOrDefault().IsBulk)</th>
+                    <th scope="col">Added by</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var analysis in Model.Analyses)
+                {
+                <tr>
+
+                    <td>@analysis.Id</td>
+                    <td>@analysis.AnalysisType.Name</td>
+                    @if (analysis.IsBulk)
+                    {
+                        <td>yes</td>
+                    }
+                    else  {
+                    <td>no</td>
+                    }
+                    <td>@analysis.Owner.Name</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

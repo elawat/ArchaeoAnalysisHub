@@ -1,0 +1,42 @@
+﻿@model ArchaeoAnalysisHub.ViewModels.SampleFormViewModel
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+@using (Html.BeginForm(Model.Action, "Samples"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.SampleType)
+        @Html.DropDownListFor(m => m.SampleTypeId, new SelectList(Model.SampleTypes, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SampleType)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Artifact)
+        @Html.DropDownListFor(m => m.ArtifactId, new SelectList(Model.Artifacts, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Artifact)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsAnalysed)
+        @Html.CheckBoxFor(m => m.IsAnalysed, new { @class = "check-box" })
+        @Html.ValidationMessageFor(m => m.IsAnalysed)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsPublic)
+        @Html.CheckBoxFor(m => m.IsPublic, new { @class = "check-box" })
+        @Html.ValidationMessageFor(m => m.IsPublic)
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

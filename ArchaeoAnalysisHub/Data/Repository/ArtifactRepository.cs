@@ -63,7 +63,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
         public void Delete(int id)
         {
             var artifact = context.Artifacts.Where(a => a.Id == id).FirstOrDefault();
-            context.Artifacts.Remove(artifact);
+            artifact.IsDeleted = true;
             context.SaveChanges();
         }
     }

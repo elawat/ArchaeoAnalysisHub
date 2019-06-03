@@ -7,7 +7,7 @@ namespace ArchaeoAnalysisHub.Models
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Is Analysed")]
+        [Display(Name = "Analysed")]
         public bool IsAnalysed { get; set; }
         [Required]
         public int ArtifactId { get; set; }
@@ -20,5 +20,8 @@ namespace ArchaeoAnalysisHub.Models
         [Required]
         public string OwnerId { get; set; }
         public bool IsPublic { get; set; }
+        public bool IsDeleted { get; set; }
+        public IEnumerable<Artifact> Artifacts { get; set; }
+        public IEnumerable<SampleType> SampleTypes { get; set; }
     }
 }

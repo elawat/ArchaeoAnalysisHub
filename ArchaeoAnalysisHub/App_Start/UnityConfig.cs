@@ -26,6 +26,7 @@ namespace ArchaeoAnalysisHub
             container.RegisterType<IApplicationDbContext, ApplicationDbContext>();
             container.RegisterType<IAnalysisRepository, AnalysisRepository>();
             container.RegisterType<IArtifactRepository, ArtifactRepository>();
+            container.RegisterType<ISampleRepository, SampleRepository>();
 
             container.RegisterType<IAnalysesHandler, AnalysesService>();
 

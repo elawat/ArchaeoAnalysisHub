@@ -14,6 +14,7 @@ namespace ArchaeoAnalysisHub.Models
         [Required]
         public int AnalysisTypeId { get; set; }
         public AnalysisType AnalysisType { get; set; }
+        [Display(Name = "Bulk")]
         public bool IsBulk { get; set; }
         public bool IsNormalised { get; set; }
         public ICollection<AnalysisDataPoint> AnalysisDataPoints { get; private set; }

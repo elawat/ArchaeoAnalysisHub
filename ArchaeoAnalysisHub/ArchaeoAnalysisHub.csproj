@@ -231,12 +231,15 @@
     <Compile Include="Controllers\ArtifactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\IApplicationDbContext.cs" />
     <Compile Include="Data\Repository\AnalysisRepository.cs" />
     <Compile Include="Data\Repository\ArtifactRepository.cs" />
     <Compile Include="Data\Repository\Interfaces\IAnalysisRepository.cs" />
     <Compile Include="Data\Repository\Interfaces\IArtifactRepository.cs" />
+    <Compile Include="Data\Repository\Interfaces\ISampleRepository.cs" />
+    <Compile Include="Data\Repository\SampleRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -324,6 +327,14 @@
     <Compile Include="Migrations\201905292136572_AddedLocationToArtifact.Designer.cs">
       <DependentUpon>201905292136572_AddedLocationToArtifact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906011739164_AddedIsDeletedFlagToArtifact.cs" />
+    <Compile Include="Migrations\201906011739164_AddedIsDeletedFlagToArtifact.Designer.cs">
+      <DependentUpon>201906011739164_AddedIsDeletedFlagToArtifact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906011749555_AddedIsDeletedToSample.cs" />
+    <Compile Include="Migrations\201906011749555_AddedIsDeletedToSample.Designer.cs">
+      <DependentUpon>201906011749555_AddedIsDeletedToSample.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -342,6 +353,7 @@
     <Compile Include="ViewModels\AnalysesViewModel.cs" />
     <Compile Include="ViewModels\AnalysisSummary.cs" />
     <Compile Include="ViewModels\ArtifactFormViewModel.cs" />
+    <Compile Include="ViewModels\SampleFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -503,6 +515,8 @@
     <Content Include="Views\Shared\Analyses.cshtml" />
     <Content Include="Views\Artifacts\ArtifactForm.cshtml" />
     <Content Include="Views\Artifacts\Details.cshtml" />
+    <Content Include="Views\Samples\Details.cshtml" />
+    <Content Include="Views\Samples\SampleForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -585,6 +599,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905292136572_AddedLocationToArtifact.resx">
       <DependentUpon>201905292136572_AddedLocationToArtifact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906011739164_AddedIsDeletedFlagToArtifact.resx">
+      <DependentUpon>201906011739164_AddedIsDeletedFlagToArtifact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906011749555_AddedIsDeletedToSample.resx">
+      <DependentUpon>201906011749555_AddedIsDeletedToSample.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -30,9 +30,11 @@ namespace ArchaeoAnalysisHub.Controllers
                 Samples = artifact.Samples
 
             };
+
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var artifact = repository.GetArtifact(id);
@@ -53,6 +55,7 @@ namespace ArchaeoAnalysisHub.Controllers
             return View("ArtifactForm", viewModel);
         }
 
+        [Authorize]
         public ActionResult Update(ArtifactFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -67,16 +70,19 @@ namespace ArchaeoAnalysisHub.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new ArtifactFormViewModel()
             {
                 ArtifactTypes = repository.GetArtifactTypes(),
                 Heading = "Create an artifact",
-        };
+            };
+
             return View("ArtifactForm", viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArtifactFormViewModel viewModel)
@@ -87,7 +93,6 @@ namespace ArchaeoAnalysisHub.Controllers
                 return View("ArtifactForm", viewModel);
             }
 
-
             var artifact = new Artifact
             {
                 Id = viewModel.Id,
@@ -97,7 +102,8 @@ namespace ArchaeoAnalysisHub.Controllers
                 Country = viewModel.Country,
                 Site = viewModel.Site,
                 OwnerId = User.Identity.GetUserId(),
-                IsPublic = viewModel.IsPublic
+                IsPublic = viewModel.IsPublic,
+                IsDeleted = false
             };
 
             repository.Create(artifact);
@@ -105,6 +111,7 @@ namespace ArchaeoAnalysisHub.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             repository.Delete(id);
