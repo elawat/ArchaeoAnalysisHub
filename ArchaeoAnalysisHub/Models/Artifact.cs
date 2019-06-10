@@ -7,6 +7,7 @@ namespace ArchaeoAnalysisHub.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Artifact name")]
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]

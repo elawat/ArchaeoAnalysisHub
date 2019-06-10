@@ -6,6 +6,7 @@ namespace ArchaeoAnalysisHub.Models
     public class Sample
     {
         [Key]
+        [Display(Name ="Sample id")]
         public int Id { get; set; }
         [Display(Name = "Analysed")]
         public bool IsAnalysed { get; set; }

@@ -1,0 +1,95 @@
+﻿
+@model ArchaeoAnalysisHub.ViewModels.AnalysisFormViewModel
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Analysis id: @Model.Id</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="property">@Html.DisplayNameFor(m => m.AnalysisType.Name):</div>
+        <div>@Html.DisplayFor(m => m.AnalysisType.Name)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.SpectrumNo):</div>
+        <div>@Html.DisplayFor(m => m.SpectrumNo)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.Sample.Artifact.Name):</div>
+        <div>
+            @Html.ActionLink(Model.Sample.Artifact.Name, "Details", "Artifacts", new { id = Model.Sample.Artifact.Id }, new { @class = "link-details" })
+        </div>
+        <div class="property">@Html.DisplayNameFor(m => m.Sample.Artifact.ArtifactType.Name):</div>
+        <div>@Html.DisplayFor(m => m.Sample.Artifact.ArtifactType.Name)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.Sample.Id):</div>
+        <div>
+            @Html.ActionLink(Model.Sample.Id.ToString(), "Details", "Samples", new { id = Model.Sample.Id }, new { @class = "link-details" })
+        </div>
+        <div class="property">@Html.DisplayNameFor(m => m.Sample.SampleType.Name):</div>
+        <div>@Html.DisplayFor(m => m.Sample.SampleType.Name)</div>
+    </div>
+    <div class="col-md-1">
+        <div class="property">@Html.DisplayNameFor(m => m.IsBulk):</div>
+        @if (Model.IsBulk)
+        {
+            <div>yes</div>
+        }
+        else
+        {
+            <div>no</div>
+        }
+        <div class="property">@Html.DisplayNameFor(m => m.IsNormalised):</div>
+        @if (Model.IsNormalised)
+        {
+            <div>yes</div>
+        }
+        else
+        {
+            <div>no</div>
+        }
+        <div class="property">Added by:</div>
+        <div>@Html.DisplayFor(m => m.Owner.Name)</div>
+    </div>
+    <div class="col-md-4">
+        @Html.ActionLink("Edit", "Edit", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+        |
+        @Html.ActionLink("Delete", "Delete", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Results</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().Symbol)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().ResultInPercentage)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dp in Model.AnalysisDataPoints)
+                {
+                    <tr>
+                        <td>@dp.Symbol</td>
+                        <td>@dp.ResultInPercentage</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Sum</th>
+                    <td>@Model.AnalysisDataPoints.Sum(dp => dp.ResultInPercentage)</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <div class="col-md-4">
+        <div>
+            <img src=@Model.SpectrumImage.Url class="img-details" />
+        </div>
+        <div>
+            <img src=@Model.GeneralImage.Url class="img-details" />
+        </div>
+    </div>
+
+</div>
+
+

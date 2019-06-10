@@ -351,6 +351,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalysesViewModel.cs" />
+    <Compile Include="ViewModels\AnalysisFormViewModel.cs" />
     <Compile Include="ViewModels\AnalysisSummary.cs" />
     <Compile Include="ViewModels\ArtifactFormViewModel.cs" />
     <Compile Include="ViewModels\SampleFormViewModel.cs" />
@@ -517,11 +518,11 @@
     <Content Include="Views\Artifacts\Details.cshtml" />
     <Content Include="Views\Samples\Details.cshtml" />
     <Content Include="Views\Samples\SampleForm.cshtml" />
+    <Content Include="Views\Analyses\Details.cshtml" />
+    <Content Include="Views\Analyses\AnalysisForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Analyses\" />
-    <Folder Include="Views\Artifact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

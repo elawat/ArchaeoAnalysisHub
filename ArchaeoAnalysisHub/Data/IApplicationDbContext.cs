@@ -11,5 +11,6 @@ namespace ArchaeoAnalysisHub.Data
         DbSet<ArtifactType> ArtifactTypes { get; set; }
         DbSet<Analysis> Analyses { get; set; }
         DbSet<AnalysisType> AnalysisTypes { get; set; }
+        DbSet<AnalysisDataPoint> AnalysisDataPoints { get; set; }
     }
 }

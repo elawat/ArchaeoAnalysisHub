@@ -11,7 +11,10 @@ namespace ArchaeoAnalysisHub.ViewModels
     public class SampleFormViewModel
     {
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "Analysed")]
         public bool IsAnalysed { get; set; }
+        [Required]
         public int ArtifactId { get; set; }
         public Artifact Artifact { get; set; }
         [Required]
@@ -19,8 +22,8 @@ namespace ArchaeoAnalysisHub.ViewModels
         public SampleType SampleType { get; set; }
         public ICollection<Analysis> Analyses { get; set; }
         public ApplicationUser Owner { get; set; }
-        [Required]
         public string OwnerId { get; set; }
+        [Required]
         public bool IsPublic { get; set; }
         public bool IsDeleted { get; set; }
         public string Heading { get; set; }

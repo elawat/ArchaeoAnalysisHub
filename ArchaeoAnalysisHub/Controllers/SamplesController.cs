@@ -97,6 +97,7 @@ namespace ArchaeoAnalysisHub.Controllers
         {
 
             var userId = User.Identity.GetUserId();
+            
 
             if (!ModelState.IsValid)
             {

@@ -13,6 +13,7 @@ namespace ArchaeoAnalysisHub.Data
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<AnalysisType> AnalysisTypes { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<AnalysisDataPoint> AnalysisDataPoints { get; set; }
 
         public ApplicationDbContext()
             : base("LocalConnection", throwIfV1Schema: false)
@@ -23,5 +24,6 @@ namespace ArchaeoAnalysisHub.Data
         {
             return new ApplicationDbContext();
         }
+
     }
 }

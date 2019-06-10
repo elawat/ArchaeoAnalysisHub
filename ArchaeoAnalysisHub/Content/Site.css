@@ -133,5 +133,9 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 }
 
+.img-details {
+    width: 90%;
+}
+
 
 

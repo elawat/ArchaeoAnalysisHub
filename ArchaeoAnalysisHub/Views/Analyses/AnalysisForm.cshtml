@@ -1,0 +1,74 @@
+﻿@model ArchaeoAnalysisHub.ViewModels.AnalysisFormViewModel
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+<div class="row">
+    <div class="col-md-5">
+        @using (Html.BeginForm("Create", "Analyses"))
+        {
+            <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sample)
+                @Html.DropDownListFor(m => m.Sample.Id, new SelectList(Model.Samples, "Id", "Id"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Sample)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AnalysisType)
+                @Html.DropDownListFor(m => m.AnalysisType.Id, new SelectList(Model.AnalysisTypes, "Id", "Name"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.AnalysisType)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsBulk)
+                @Html.CheckBoxFor(m => m.IsBulk, new { @class = "check-box" })
+                @Html.ValidationMessageFor(m => m.IsBulk)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsNormalised)
+                @Html.CheckBoxFor(m => m.IsNormalised, new { @class = "check-box" })
+                @Html.ValidationMessageFor(m => m.IsNormalised)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsPublic)
+                @Html.CheckBoxFor(m => m.IsPublic, new { @class = "check-box" })
+                @Html.ValidationMessageFor(m => m.IsPublic)
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        }
+    </div>
+    <div class="col-md-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().Symbol)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().ResultInPercentage)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dp in Model.AnalysisDataPoints)
+                {
+                    <tr>
+                        <td>@dp.Symbol</td>
+                        <td>@dp.ResultInPercentage</td>
+                        <td>Edit | Delete</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

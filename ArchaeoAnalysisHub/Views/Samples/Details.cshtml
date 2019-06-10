@@ -11,11 +11,20 @@
         <div class="property">@Html.DisplayNameFor(m => m.SampleType.Name):</div>
         <div>@Html.DisplayFor(m => m.SampleType.Name)</div>
         <div class="property">@Html.DisplayNameFor(m => m.Artifact.Name):</div>
-        <div>@Html.DisplayFor(m => m.Artifact.Name)</div>
+        <div>
+            @Html.ActionLink(Model.Artifact.Name, "Details", "Artifacts", new { id = Model.Artifact.Id }, new { @class = "link-details" })
+        </div>
         <div class="property">Added by:</div>
         <div>@Html.DisplayFor(m => m.Owner.Name)</div>
         <div class="property">@Html.DisplayNameFor(m => m.IsAnalysed):</div>
-        <div>@Html.DisplayFor(m => m.IsAnalysed)</div>
+        @if (Model.IsAnalysed)
+        {
+            <div>yes</div>
+        }
+        else
+        {
+            <div>no</div>
+        }
     </div>
     <div class="col-md-2">
         @Html.ActionLink("Edit", "Edit", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
@@ -40,7 +49,9 @@
                 {
                 <tr>
 
-                    <td>@analysis.Id</td>
+                    <td>
+                        @Html.ActionLink(analysis.Id.ToString(), "Details", "Analyses", new { id = analysis.Id }, new { @class = "link-details" })
+                    </td>
                     <td>@analysis.AnalysisType.Name</td>
                     @if (analysis.IsBulk)
                     {

@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using ArchaeoAnalysisHub.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArchaeoAnalysisHub.Models
+namespace ArchaeoAnalysisHub.ViewModels
 {
-    public class Analysis
+    public class AnalysisFormViewModel
     {
-        [Key]
         public int Id { get; set; }
         [Required]
         public int SampleId { get; set; }
@@ -15,7 +14,9 @@ namespace ArchaeoAnalysisHub.Models
         public int AnalysisTypeId { get; set; }
         public AnalysisType AnalysisType { get; set; }
         [Display(Name = "Bulk")]
+        [Required]
         public bool IsBulk { get; set; }
+        [Required]
         public bool IsNormalised { get; set; }
         public ICollection<AnalysisDataPoint> AnalysisDataPoints { get; set; }
         public ApplicationUser Owner { get; set; }
@@ -26,15 +27,11 @@ namespace ArchaeoAnalysisHub.Models
         public Image GeneralImage { get; set; }
         public int? SpectrumImageId { get; set; }
         public Image SpectrumImage { get; set; }
-        [Display(Name = "Spectrum")]
         public string SpectrumNo { get; set; }
-
-        public Analysis()
-        {
-            AnalysisDataPoints = new Collection<AnalysisDataPoint>();
-        }
-
-        
-
+        public string Heading { get; set; }
+        public ICollection<Sample> Samples { get; set; }
+        public ICollection<Artifact> Artifacts { get; set; }
+        public ICollection<AnalysisType> AnalysisTypes { get; set; }
+        public ICollection<string> Symbols { get; set; }
     }
 }
