@@ -7,20 +7,25 @@
 <h2>@Model.Heading</h2>
 <div class="row">
     <div class="col-md-5">
-        @using (Html.BeginForm("Create", "Analyses"))
+        @using (Html.BeginForm(Model.Action, "Analyses"))
         {
             <p class="alert alert-info">All fields are <strong>required</strong>.</p>
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Id)
             <div class="form-group">
                 @Html.LabelFor(m => m.Sample)
-                @Html.DropDownListFor(m => m.Sample.Id, new SelectList(Model.Samples, "Id", "Id"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Sample)
+                @Html.DropDownListFor(m => m.SampleId, new SelectList(Model.Samples, "Id", "Id"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SampleId)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.AnalysisType)
-                @Html.DropDownListFor(m => m.AnalysisType.Id, new SelectList(Model.AnalysisTypes, "Id", "Name"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.AnalysisType)
+                @Html.DropDownListFor(m => m.AnalysisTypeId, new SelectList(Model.AnalysisTypes, "Id", "Name"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.AnalysisTypeId)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SpectrumNo)
+                @Html.TextBoxFor(m => m.SpectrumNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SpectrumNo)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.IsBulk)

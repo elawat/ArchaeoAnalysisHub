@@ -335,6 +335,10 @@
     <Compile Include="Migrations\201906011749555_AddedIsDeletedToSample.Designer.cs">
       <DependentUpon>201906011749555_AddedIsDeletedToSample.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906102251370_IsDeletedFlagAddedToAnalysis.cs" />
+    <Compile Include="Migrations\201906102251370_IsDeletedFlagAddedToAnalysis.Designer.cs">
+      <DependentUpon>201906102251370_IsDeletedFlagAddedToAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -606,6 +610,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906011749555_AddedIsDeletedToSample.resx">
       <DependentUpon>201906011749555_AddedIsDeletedToSample.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906102251370_IsDeletedFlagAddedToAnalysis.resx">
+      <DependentUpon>201906102251370_IsDeletedFlagAddedToAnalysis.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

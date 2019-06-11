@@ -2,6 +2,8 @@
 using ArchaeoAnalysisHub.Models;
 using ArchaeoAnalysisHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.Controllers
@@ -56,7 +58,9 @@ namespace ArchaeoAnalysisHub.Controllers
                 Samples = repository.GetSamplesForUser(userId),
                 Artifacts = repository.GetArtifactsForUser(userId),
                 AnalysisTypes = repository.GetAnalysisTypes(),
-                Symbols = repository.GetSymbols()
+                Symbols = repository.GetSymbols(),
+                AnalysisDataPoints = new List<AnalysisDataPoint>(),
+                Heading = "Create an analysis",
             };
 
             return View("AnalysisForm", viewModel);
@@ -67,18 +71,36 @@ namespace ArchaeoAnalysisHub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AnalysisFormViewModel viewModel)
         {
+
+            var errors = ModelState.Where(x => x.Value.Errors.Any())
+                .Select(x => new { x.Key, x.Value.Errors });
+
+            var userId = User.Identity.GetUserId();
+
             if (!ModelState.IsValid)
             {
-                
+                viewModel.Samples = repository.GetSamplesForUser(userId);
+                viewModel.Artifacts = repository.GetArtifactsForUser(userId);
+                viewModel.AnalysisTypes = repository.GetAnalysisTypes();
+                viewModel.Symbols = repository.GetSymbols();
+                viewModel.AnalysisDataPoints = new List<AnalysisDataPoint>();
                 return View("AnalysisForm", viewModel);
             }
 
-            var analysis = new Artifact
+            var analysis = new Analysis
             {
-                
-            };
+                AnalysisDataPoints = viewModel.AnalysisDataPoints,
+                Id = viewModel.Id,
+                SampleId = viewModel.SampleId,
+                AnalysisTypeId = viewModel.AnalysisTypeId,
+                IsBulk = viewModel.IsBulk,
+                IsNormalised = viewModel.IsNormalised,
+                IsPublic = viewModel.IsPublic,
+                SpectrumNo = viewModel.SpectrumNo,
+                OwnerId = userId
+        };
 
-            //repository.Create(artifact);
+            repository.Create(analysis);
 
             return RedirectToAction("Index", "Home");
         }
@@ -92,7 +114,7 @@ namespace ArchaeoAnalysisHub.Controllers
 
             var viewModel = new AnalysisFormViewModel()
             {
-                Heading = "Edit an Analysis",
+                Heading = "Edit an analysis",
                 Samples = repository.GetSamplesForUser(userId),
                 Artifacts = repository.GetArtifactsForUser(userId),
                 AnalysisTypes = repository.GetAnalysisTypes(),
@@ -111,6 +133,33 @@ namespace ArchaeoAnalysisHub.Controllers
 
 
             return View("AnalysisForm", viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Update(AnalysisFormViewModel viewModel)
+        {
+            var userId = User.Identity.GetUserId();
+
+            if (!ModelState.IsValid)
+            {
+                viewModel.Samples = repository.GetSamplesForUser(userId);
+                viewModel.Artifacts = repository.GetArtifactsForUser(userId);
+                viewModel.AnalysisTypes = repository.GetAnalysisTypes();
+                viewModel.Symbols = repository.GetSymbols();
+                return View("AnalysisForm", viewModel);
+            }
+
+            repository.Update(viewModel);
+
+            return RedirectToAction("Details", "Analyses", new { id = viewModel.Id });
+
+        }
+
+        [Authorize]
+        public ActionResult Delete(int id)
+        {
+            repository.Delete(id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

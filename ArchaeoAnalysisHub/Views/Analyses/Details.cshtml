@@ -48,9 +48,9 @@
         <div>@Html.DisplayFor(m => m.Owner.Name)</div>
     </div>
     <div class="col-md-4">
-        @Html.ActionLink("Edit", "Edit", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+        @Html.ActionLink("Edit", "Edit", "Analyses", new { id = @Model.Id }, new { @class = "link-details" })
         |
-        @Html.ActionLink("Delete", "Delete", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+        @Html.ActionLink("Delete", "Delete", "Analyses", new { id = @Model.Id }, new { @class = "link-details" })
     </div>
 </div>
 <div class="row">
@@ -72,22 +72,32 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Sum</th>
-                    <td>@Model.AnalysisDataPoints.Sum(dp => dp.ResultInPercentage)</td>
-                </tr>
-            </tfoot>
+            @if (@Model.AnalysisDataPoints != null)
+            {
+                <tfoot>
+                    <tr>
+                        <th>Sum</th>
+                        <td>@Model.AnalysisDataPoints.Sum(dp => dp.ResultInPercentage)</td>
+                    </tr>
+                </tfoot>
+            }
+
         </table>
 
     </div>
     <div class="col-md-4">
-        <div>
-            <img src=@Model.SpectrumImage.Url class="img-details" />
-        </div>
-        <div>
-            <img src=@Model.GeneralImage.Url class="img-details" />
-        </div>
+        @if (@Model.SpectrumImage != null)
+        {
+            <div>
+                <img src=@Model.SpectrumImage.Url class="img-details" />
+            </div>
+        }
+        @if (@Model.GeneralImage != null)
+        {
+            <div>
+                <img src=@Model.GeneralImage.Url class="img-details" />
+            </div>
+        }
     </div>
 
 </div>

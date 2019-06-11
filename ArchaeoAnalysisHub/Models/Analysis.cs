@@ -34,7 +34,7 @@ namespace ArchaeoAnalysisHub.Models
             AnalysisDataPoints = new Collection<AnalysisDataPoint>();
         }
 
-        
+        public bool IsDeleted { get; set; }
 
     }
 }

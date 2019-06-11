@@ -1,5 +1,6 @@
 ﻿using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.Models;
+using ArchaeoAnalysisHub.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,12 +9,13 @@ namespace ArchaeoAnalysisHub.Data.Repository
 {
     public class AnalysisRepository : IAnalysisRepository
     {
-        private IApplicationDbContext context;
+        private ApplicationDbContext context;
 
         public AnalysisRepository(ApplicationDbContext context)
         {
-            this.context = context;
+            this.context = new ApplicationDbContext();
         }
+
         public List<Analysis> GetAll()
         {
             return context.Analyses
@@ -76,6 +78,36 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Select(dp => dp.Symbol)
                 .Distinct()
                 .ToList();
+        }
+
+        public void Update(AnalysisFormViewModel updateAnalysis)
+        {
+            var analysis = context.Analyses
+                .Where(x => x.Id == updateAnalysis.Id)
+                .Single();
+
+            analysis.SampleId = updateAnalysis.SampleId;
+            analysis.AnalysisTypeId = updateAnalysis.AnalysisTypeId;
+            analysis.IsBulk = updateAnalysis.IsBulk;
+            analysis.IsNormalised = updateAnalysis.IsNormalised;
+            analysis.AnalysisDataPoints = updateAnalysis.AnalysisDataPoints;
+            analysis.IsPublic = updateAnalysis.IsPublic;
+            analysis.SpectrumNo = updateAnalysis.SpectrumNo;
+
+            context.SaveChanges();
+        }
+
+        public void Create(Analysis analysis)
+        {
+            context.Analyses.Add(analysis);
+            context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var analysis = context.Analyses.Where(a => a.Id == id).FirstOrDefault();
+            analysis.IsDeleted = true;
+            context.SaveChanges();
         }
     }
 }

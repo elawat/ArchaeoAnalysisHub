@@ -1,4 +1,5 @@
 ﻿using ArchaeoAnalysisHub.Models;
+using ArchaeoAnalysisHub.ViewModels;
 using System.Collections.Generic;
 
 namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
@@ -11,5 +12,10 @@ namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
         List<Artifact> GetArtifactsForUser(string userId);
         List<AnalysisType> GetAnalysisTypes();
         List<string> GetSymbols();
+        void Update(AnalysisFormViewModel updateAnalysis);
+        void Create(Analysis analysis);
+        void Delete(int id);
+
+
     }
 }

@@ -1,6 +1,10 @@
-﻿using ArchaeoAnalysisHub.Models;
+﻿using Antlr.Runtime.Misc;
+using ArchaeoAnalysisHub.Controllers;
+using ArchaeoAnalysisHub.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.ViewModels
 {
@@ -20,7 +24,6 @@ namespace ArchaeoAnalysisHub.ViewModels
         public bool IsNormalised { get; set; }
         public ICollection<AnalysisDataPoint> AnalysisDataPoints { get; set; }
         public ApplicationUser Owner { get; set; }
-        [Required]
         public string OwnerId { get; set; }
         public bool IsPublic { get; set; }
         public int? GeneralImageId { get; set; }
@@ -33,5 +36,21 @@ namespace ArchaeoAnalysisHub.ViewModels
         public ICollection<Artifact> Artifacts { get; set; }
         public ICollection<AnalysisType> AnalysisTypes { get; set; }
         public ICollection<string> Symbols { get; set; }
+
+        public string Action
+        {
+            get
+            {
+                Expression<Func<AnalysesController, ActionResult>> update =
+                    (c => c.Update(this));
+
+                Expression<Func<AnalysesController, ActionResult>> create =
+                    (c => c.Create(this));
+
+                var action = (Id != 0) ? update : create;
+                return (action.Body as MethodCallExpression).Method.Name;
+            }
+        }
+
     }
 }
