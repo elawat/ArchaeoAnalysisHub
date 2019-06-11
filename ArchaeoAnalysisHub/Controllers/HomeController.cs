@@ -8,15 +8,15 @@ namespace ArchaeoAnalysisHub.Controllers
 {
     public class HomeController : Controller
     {
-        private IAnalysesHandler analysesHandler;
+        private IAnalysesService analysesService;
 
-        public HomeController(IAnalysesHandler analysesHandler)
+        public HomeController(IAnalysesService analysesHandler)
         {
-            this.analysesHandler = analysesHandler;
+            this.analysesService = analysesHandler;
         }
         public ActionResult Index()
         {
-            var analyses = analysesHandler.GetSummary();
+            var analyses = analysesService.GetSummary();
             var viewModel = new AnalysesViewModel()
             {
                 Analyses = analyses,

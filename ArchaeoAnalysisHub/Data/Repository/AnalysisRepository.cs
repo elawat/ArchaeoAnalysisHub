@@ -16,7 +16,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             this.context = new ApplicationDbContext();
         }
 
-        public List<Analysis> GetAll()
+        public List<Analysis> GetAllForHomeView()
         {
             return context.Analyses
                 .Include(a => a.Sample)
@@ -30,6 +30,21 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Include(a => a.Owner)
                 .Where(a => a.Sample.Artifact.Name == "PB-24a")
                 .Take(10)
+                .ToList();
+        }
+
+        public List<Analysis> GetAll()
+        {
+            return context.Analyses
+                .Include(a => a.Sample)
+                .Include(a => a.Sample.SampleType)
+                .Include(a => a.Sample.Artifact)
+                .Include(a => a.Sample.Artifact.ArtifactType)
+                .Include(a => a.AnalysisType)
+                .Include(a => a.AnalysisDataPoints)
+                .Include(a => a.GeneralImage)
+                .Include(a => a.SpectrumImage)
+                .Include(a => a.Owner)
                 .ToList();
         }
 

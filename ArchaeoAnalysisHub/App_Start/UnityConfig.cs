@@ -28,7 +28,7 @@ namespace ArchaeoAnalysisHub
             container.RegisterType<IArtifactRepository, ArtifactRepository>();
             container.RegisterType<ISampleRepository, SampleRepository>();
 
-            container.RegisterType<IAnalysesHandler, AnalysesService>();
+            container.RegisterType<IAnalysesService, AnalysesService>();
 
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

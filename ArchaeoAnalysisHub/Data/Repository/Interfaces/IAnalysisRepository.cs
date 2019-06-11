@@ -7,6 +7,7 @@ namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
     public interface IAnalysisRepository
     {
         List<Analysis> GetAll();
+        List<Analysis> GetAllForHomeView();
         Analysis GetAnalysis(int id);
         List<Sample> GetSamplesForUser(string userId);
         List<Artifact> GetArtifactsForUser(string userId);
