@@ -11,8 +11,10 @@ namespace ArchaeoAnalysisHub.ViewModels
     public class AnalysisDataPointFormViewModel
     {
         public int Id { get; set; }
+        [Required]
         public string Symbol { get; set; }
         [Display(Name = "Amount (%)")]
+        [Required]
         public double ResultInPercentage { get; set; }
         public string Heading { get; set; }
         public ICollection<string> Symbols;

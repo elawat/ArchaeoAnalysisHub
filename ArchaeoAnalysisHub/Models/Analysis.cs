@@ -28,13 +28,5 @@ namespace ArchaeoAnalysisHub.Models
         public Image SpectrumImage { get; set; }
         [Display(Name = "Spectrum")]
         public string SpectrumNo { get; set; }
-
-        public Analysis()
-        {
-            AnalysisDataPoints = new Collection<AnalysisDataPoint>();
-        }
-
-        public bool IsDeleted { get; set; }
-
     }
 }

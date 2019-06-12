@@ -20,7 +20,5 @@ namespace ArchaeoAnalysisHub.Models
         public string Country { get; set; }
         public string Site { get; set; }
         public IEnumerable<Sample> Samples { get; set; }
-        public bool IsDeleted { get; set; }
-
     }
 }

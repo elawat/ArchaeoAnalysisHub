@@ -1,6 +1,5 @@
 ﻿using ArchaeoAnalysisHub.BLL.Interfaces;
 using ArchaeoAnalysisHub.ViewModels;
-using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.Controllers
@@ -14,14 +13,6 @@ namespace ArchaeoAnalysisHub.Controllers
             this.dataPointsService = dataPointsService;
         }
 
-        public ActionResult Details(int id)
-        {
-
-            var viewModel = dataPointsService.GetDataPoint(id);
-
-            return View("Details", viewModel);
-        }
-
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -33,8 +24,6 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Update(AnalysisDataPointFormViewModel viewModel)
         {
-            var userId = User.Identity.GetUserId();
-
             if (!ModelState.IsValid)
             {
                 return View("AnalysisDataPointForm", viewModel);
@@ -49,8 +38,9 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            var analysisId = dataPointsService.GetDataPoint(id).AnalysisId;
             dataPointsService.DeleteAnalysisDataPoint(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Details", "Analyses", new { id = analysisId });
         }
 
         [Authorize]
@@ -66,8 +56,6 @@ namespace ArchaeoAnalysisHub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AnalysisDataPointFormViewModel viewModel)
         {
-            var userId = User.Identity.GetUserId();
-
             if (!ModelState.IsValid)
             {
                 var repopulatedViewModel = dataPointsService.RepopulateListsForAnalysisDataPointEmptyView(viewModel);

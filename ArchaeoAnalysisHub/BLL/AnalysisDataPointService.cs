@@ -64,7 +64,6 @@ namespace ArchaeoAnalysisHub.BLL
                 Symbol = viewModel.Symbol,
                 ResultInPercentage = viewModel.ResultInPercentage,
                 AnalysisId = viewModel.AnalysisId,
-                IsDeleted = false
             };
 
             repository.CreateDataPoint(dataPoint);

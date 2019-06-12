@@ -17,7 +17,6 @@ namespace ArchaeoAnalysisHub.ViewModels
         public string Description { get; set; }
         [Required]
         public int ArtifactTypeId { get; set; }
-        [Required]
         public ArtifactType ArtifactType { get; set; }
         [Required]
         public bool IsPublic { get; set; }

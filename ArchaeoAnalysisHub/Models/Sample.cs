@@ -21,7 +21,6 @@ namespace ArchaeoAnalysisHub.Models
         [Required]
         public string OwnerId { get; set; }
         public bool IsPublic { get; set; }
-        public bool IsDeleted { get; set; }
         public IEnumerable<Artifact> Artifacts { get; set; }
         public IEnumerable<SampleType> SampleTypes { get; set; }
     }

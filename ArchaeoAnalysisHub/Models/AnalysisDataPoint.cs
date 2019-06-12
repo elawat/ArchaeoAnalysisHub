@@ -12,6 +12,5 @@ namespace ArchaeoAnalysisHub.Models
         [Required]
         public int AnalysisId { get; set; }
         public Analysis Analysis { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

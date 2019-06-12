@@ -61,8 +61,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Where(a => a.Id == id).FirstOrDefault();
 
             analysis.AnalysisDataPoints = context.AnalysisDataPoints
-                .Where(dp => dp.AnalysisId == id
-                && dp.IsDeleted == false)
+                .Where(dp => dp.AnalysisId == id)
                 .ToList();
 
             return analysis;
@@ -122,7 +121,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
         public void Delete(int id)
         {
             var analysis = context.Analyses.Where(a => a.Id == id).FirstOrDefault();
-            analysis.IsDeleted = true;
+            context.Analyses.Remove(analysis);
             context.SaveChanges();
         }
 
@@ -156,7 +155,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
         {
             var dataPoint = context.AnalysisDataPoints
                 .Where(dp => dp.Id == id).FirstOrDefault();
-            dataPoint.IsDeleted = true;
+            context.AnalysisDataPoints.Remove(dataPoint);
             context.SaveChanges();
         }
     }

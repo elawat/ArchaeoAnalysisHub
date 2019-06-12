@@ -103,7 +103,6 @@ namespace ArchaeoAnalysisHub.Controllers
                 Site = viewModel.Site,
                 OwnerId = User.Identity.GetUserId(),
                 IsPublic = viewModel.IsPublic,
-                IsDeleted = false
             };
 
             repository.Create(artifact);
