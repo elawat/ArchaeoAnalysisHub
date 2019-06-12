@@ -14,10 +14,10 @@
         <div>@Html.DisplayFor(m => m.SpectrumNo)</div>
         <div class="property">@Html.DisplayNameFor(m => m.Sample.Artifact.Name):</div>
         <div>
-            @Html.ActionLink(Model.Sample.Artifact.Name, "Details", "Artifacts", new { id = Model.Sample.Artifact.Id }, new { @class = "link-details" })
+            @Html.ActionLink(Model.Sample.Artifact.Name, "Details", "Artefacts", new { id = Model.Sample.Artifact.Id }, new { @class = "link-details" })
         </div>
-        <div class="property">@Html.DisplayNameFor(m => m.Sample.Artifact.ArtifactType.Name):</div>
-        <div>@Html.DisplayFor(m => m.Sample.Artifact.ArtifactType.Name)</div>
+        <div class="property">@Html.DisplayNameFor(m => m.Sample.Artifact.ArtefactType.Name):</div>
+        <div>@Html.DisplayFor(m => m.Sample.Artifact.ArtefactType.Name)</div>
         <div class="property">@Html.DisplayNameFor(m => m.Sample.Id):</div>
         <div>
             @Html.ActionLink(Model.Sample.Id.ToString(), "Details", "Samples", new { id = Model.Sample.Id }, new { @class = "link-details" })

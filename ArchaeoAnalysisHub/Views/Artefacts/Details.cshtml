@@ -1,0 +1,70 @@
+﻿
+@model ArchaeoAnalysisHub.ViewModels.ArtefactFormViewModel
+    @{
+        ViewBag.Title = "";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>@Model.Name</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="property">@Html.DisplayNameFor(m => m.Description):</div>
+            <div>@Html.DisplayFor(m => m.Description)</div>
+            <div class="property">@Html.DisplayNameFor(m => m.ArtifactType.Name):</div>
+            <div>@Html.DisplayFor(m => m.ArtifactType.Name)</div>
+            <div class="property">Added by:</div>
+            <div>@Html.DisplayFor(m => m.Owner.Name)</div>
+        </div>
+        <div class="col-md-1">
+            <div class="property">@Html.DisplayNameFor(m => m.Country):</div>
+            <div>@Html.DisplayFor(m => m.Country)</div>
+            <div class="property">@Html.DisplayNameFor(m => m.Site):</div>
+            <div>@Html.DisplayFor(m => m.Site)</div>
+            <div class="property">Added date:</div>
+            <div>@Html.DisplayFor(m => m.AddedDate)</div>
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink("Edit", "Edit", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+            |
+            @Html.ActionLink("Delete", "Delete", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <h3>Samples</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Samples.FirstOrDefault().Id)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Samples.FirstOrDefault().SampleType.Name)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Samples.FirstOrDefault().IsAnalysed)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Samples.FirstOrDefault().Owner.Name)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var sample in Model.Samples)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.ActionLink(sample.Id.ToString(), "Details", "Samples", new { id = sample.Id }, new { @class = "link-details" })
+                                </td>
+                                <td>@sample.SampleType.Name</td>
+                                @if (sample.IsAnalysed)
+                                {
+                                    <td>yes</td>
+                                }
+                                else
+                                {
+                                    <td>no</td>
+                                }
+                                <td>@sample.Owner.Name</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+

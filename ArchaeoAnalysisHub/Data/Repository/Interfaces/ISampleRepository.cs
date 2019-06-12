@@ -8,7 +8,7 @@ namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
     {
         Sample GetSample(int id);
         IEnumerable<SampleType> GetSampleTypes();
-        IEnumerable<Artifact> GetArtifactsForUser(string userId);
+        IEnumerable<Artefact> GetArtifactsForUser(string userId);
         void Update(SampleFormViewModel updatedSample);
         void Create(Sample sample);
         void Delete(int id);

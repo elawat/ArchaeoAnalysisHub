@@ -16,7 +16,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public bool IsAnalysed { get; set; }
         [Required]
         public int ArtifactId { get; set; }
-        public Artifact Artifact { get; set; }
+        public Artefact Artifact { get; set; }
         [Required]
         public int SampleTypeId { get; set; }
         public SampleType SampleType { get; set; }
@@ -27,7 +27,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public bool IsPublic { get; set; }
         public bool IsDeleted { get; set; }
         public string Heading { get; set; }
-        public IEnumerable<Artifact> Artifacts { get; set; }
+        public IEnumerable<Artefact> Artifacts { get; set; }
         public IEnumerable<SampleType> SampleTypes { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime AddedDate { get; set; }

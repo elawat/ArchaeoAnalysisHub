@@ -16,10 +16,10 @@ namespace ArchaeoAnalysisHub.Data.Repository
             this.context = new ApplicationDbContext();
         }
 
-        public Artifact GetArtifact(int id)
+        public Artefact GetArtifact(int id)
         {
             var artifact = context.Artifacts
-                .Include(a => a.ArtifactType)
+                .Include(a => a.ArtefactType)
                 .Include(a => a.Owner)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
@@ -32,12 +32,12 @@ namespace ArchaeoAnalysisHub.Data.Repository
             return artifact;
         }
 
-        public IEnumerable<ArtifactType> GetArtifactTypes()
+        public IEnumerable<ArtefactType> GetArtifactTypes()
         {
             return context.ArtifactTypes.ToList();
         }
 
-        public void Update(ArtifactFormViewModel updatedArtifact)
+        public void Update(ArtefactFormViewModel updatedArtifact)
         {
             
             var artifact = context.Artifacts
@@ -46,7 +46,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
 
             artifact.Name = updatedArtifact.Name;
             artifact.Description = updatedArtifact.Description;
-            artifact.ArtifactTypeId = updatedArtifact.ArtifactTypeId;
+            artifact.ArtefactTypeId = updatedArtifact.ArtifactTypeId;
             artifact.Country = updatedArtifact.Country;
             artifact.Site = updatedArtifact.Site;
             artifact.IsPublic = updatedArtifact.IsPublic;
@@ -54,7 +54,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             context.SaveChanges();
         }
 
-        public void Create(Artifact artifact)
+        public void Create(Artefact artifact)
         {
             context.Artifacts.Add(artifact);
             context.SaveChanges();

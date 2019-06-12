@@ -22,7 +22,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
                 .Include(a => a.Sample.Artifact)
-                .Include(a => a.Sample.Artifact.ArtifactType)
+                .Include(a => a.Sample.Artifact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.AnalysisDataPoints)
                 .Include(a => a.GeneralImage)
@@ -39,7 +39,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
                 .Include(a => a.Sample.Artifact)
-                .Include(a => a.Sample.Artifact.ArtifactType)
+                .Include(a => a.Sample.Artifact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.AnalysisDataPoints)
                 .Include(a => a.GeneralImage)
@@ -53,7 +53,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             var analysis = context.Analyses
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
-                .Include(a => a.Sample.Artifact.ArtifactType)
+                .Include(a => a.Sample.Artifact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.Owner)
                 .Include(a => a.SpectrumImage)
@@ -75,7 +75,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .ToList();
         }
 
-        public List<Artifact> GetArtifactsForUser(string userId)
+        public List<Artefact> GetArtifactsForUser(string userId)
         {
             return context.Artifacts
                 .Where(s => s.OwnerId == userId)

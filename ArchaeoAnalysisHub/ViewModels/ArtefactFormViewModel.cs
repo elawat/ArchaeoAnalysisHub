@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.ViewModels
 {
-    public class ArtifactFormViewModel
+    public class ArtefactFormViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -17,7 +17,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public string Description { get; set; }
         [Required]
         public int ArtifactTypeId { get; set; }
-        public ArtifactType ArtifactType { get; set; }
+        public ArtefactType ArtifactType { get; set; }
         [Required]
         public bool IsPublic { get; set; }
         [Required]
@@ -25,7 +25,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         [Required]
         public string Site { get; set; }
         public string Heading { get; set; }
-        public IEnumerable<ArtifactType> ArtifactTypes { get; set; }
+        public IEnumerable<ArtefactType> ArtefactTypes { get; set; }
         public ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
         public IEnumerable<Sample> Samples { get; set; }
@@ -35,10 +35,10 @@ namespace ArchaeoAnalysisHub.ViewModels
         {
             get
             {
-                Expression<Func<ArtifactsController, ActionResult>> update =
+                Expression<Func<ArtefactsController, ActionResult>> update =
                     (c => c.Update(this));
 
-                Expression<Func<ArtifactsController, ActionResult>> create =
+                Expression<Func<ArtefactsController, ActionResult>> create =
                     (c => c.Create(this));
 
                 var action = (Id != 0) ? update : create;

@@ -6,10 +6,10 @@ namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
 {
     public interface IArtifactRepository
     {
-        Artifact GetArtifact(int id);
-        IEnumerable<ArtifactType> GetArtifactTypes();
-        void Update(ArtifactFormViewModel viewModel);
-        void Create(Artifact artifact);
+        Artefact GetArtifact(int id);
+        IEnumerable<ArtefactType> GetArtifactTypes();
+        void Update(ArtefactFormViewModel viewModel);
+        void Create(Artefact artifact);
         void Delete(int id);
     }
 }

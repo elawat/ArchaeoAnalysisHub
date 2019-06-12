@@ -7,29 +7,29 @@ using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.Controllers
 {
-    public class ArtifactsController : Controller
+    public class ArtefactsController : Controller
     {
         private IArtifactRepository repository;
 
-        public ArtifactsController(IArtifactRepository repository)
+        public ArtefactsController(IArtifactRepository repository)
         {
             this.repository = repository;
         }
 
         public ActionResult Details(int id)
         {
-            var artifact = repository.GetArtifact(id);
-            var viewModel = new ArtifactFormViewModel()
+            var artefact = repository.GetArtifact(id);
+            var viewModel = new ArtefactFormViewModel()
             {
-                Id = artifact.Id,
-                Name = artifact.Name,
-                Description = artifact.Description,
-                ArtifactType = artifact.ArtifactType,
-                Country = artifact.Country,
-                Site = artifact.Site,
-                Owner = artifact.Owner,
-                Samples = artifact.Samples,
-                AddedDate = artifact.AddedDate
+                Id = artefact.Id,
+                Name = artefact.Name,
+                Description = artefact.Description,
+                ArtifactType = artefact.ArtefactType,
+                Country = artefact.Country,
+                Site = artefact.Site,
+                Owner = artefact.Owner,
+                Samples = artefact.Samples,
+                AddedDate = artefact.AddedDate
             };
 
             return View(viewModel);
@@ -38,31 +38,31 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var artifact = repository.GetArtifact(id);
-            var viewModel = new ArtifactFormViewModel()
+            var artefact = repository.GetArtifact(id);
+            var viewModel = new ArtefactFormViewModel()
             {
                 Heading = "Edit an Artifact",
-                Id = artifact.Id,
-                Name = artifact.Name,
-                Description = artifact.Description,
-                ArtifactTypeId = artifact.ArtifactTypeId,
-                ArtifactType = artifact.ArtifactType,
-                Country = artifact.Country,
-                Site = artifact.Site,
-                ArtifactTypes = repository.GetArtifactTypes()
+                Id = artefact.Id,
+                Name = artefact.Name,
+                Description = artefact.Description,
+                ArtifactTypeId = artefact.ArtefactTypeId,
+                ArtifactType = artefact.ArtefactType,
+                Country = artefact.Country,
+                Site = artefact.Site,
+                ArtefactTypes = repository.GetArtifactTypes()
 
             };
 
-            return View("ArtifactForm", viewModel);
+            return View("ArtefactForm", viewModel);
         }
 
         [Authorize]
-        public ActionResult Update(ArtifactFormViewModel viewModel)
+        public ActionResult Update(ArtefactFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                viewModel.ArtifactTypes = repository.GetArtifactTypes();
-                return View("ArtifactForm", viewModel);
+                viewModel.ArtefactTypes = repository.GetArtifactTypes();
+                return View("ArtefactForm", viewModel);
             }
 
             repository.Update(viewModel);
@@ -74,32 +74,32 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            var viewModel = new ArtifactFormViewModel()
+            var viewModel = new ArtefactFormViewModel()
             {
-                ArtifactTypes = repository.GetArtifactTypes(),
+                ArtefactTypes = repository.GetArtifactTypes(),
                 Heading = "Create an artifact",
             };
 
-            return View("ArtifactForm", viewModel);
+            return View("ArtefactForm", viewModel);
         }
 
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ArtifactFormViewModel viewModel)
+        public ActionResult Create(ArtefactFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                viewModel.ArtifactTypes = repository.GetArtifactTypes();
-                return View("ArtifactForm", viewModel);
+                viewModel.ArtefactTypes = repository.GetArtifactTypes();
+                return View("ArtefactForm", viewModel);
             }
 
-            var artifact = new Artifact
+            var artifact = new Artefact
             {
                 Id = viewModel.Id,
                 Name = viewModel.Name,
                 Description = viewModel.Name,
-                ArtifactTypeId = viewModel.ArtifactTypeId,
+                ArtefactTypeId = viewModel.ArtifactTypeId,
                 Country = viewModel.Country,
                 Site = viewModel.Site,
                 OwnerId = User.Identity.GetUserId(),

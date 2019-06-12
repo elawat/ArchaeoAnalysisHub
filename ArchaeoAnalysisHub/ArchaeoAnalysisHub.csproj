@@ -283,7 +283,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalysesController.cs" />
     <Compile Include="Controllers\AnalysisDataPointsController.cs" />
-    <Compile Include="Controllers\ArtifactsController.cs" />
+    <Compile Include="Controllers\ArtefactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SamplesController.cs" />
@@ -410,11 +410,15 @@
     <Compile Include="Migrations\201906122010385_ChangedDatesTypesToDateTime2.Designer.cs">
       <DependentUpon>201906122010385_ChangedDatesTypesToDateTime2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906122036375_RenamedToArtefact.cs" />
+    <Compile Include="Migrations\201906122036375_RenamedToArtefact.Designer.cs">
+      <DependentUpon>201906122036375_RenamedToArtefact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
-    <Compile Include="Models\Artifact.cs" />
-    <Compile Include="Models\ArtifactType.cs" />
+    <Compile Include="Models\Artefact.cs" />
+    <Compile Include="Models\ArtefactType.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ImageType.cs" />
     <Compile Include="Models\Sample.cs" />
@@ -429,7 +433,7 @@
     <Compile Include="ViewModels\AnalysisDataPointFormViewModel.cs" />
     <Compile Include="ViewModels\AnalysisFormViewModel.cs" />
     <Compile Include="ViewModels\AnalysisSummary.cs" />
-    <Compile Include="ViewModels\ArtifactFormViewModel.cs" />
+    <Compile Include="ViewModels\ArtefactFormViewModel.cs" />
     <Compile Include="ViewModels\SampleFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -590,8 +594,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Analyses.cshtml" />
-    <Content Include="Views\Artifacts\ArtifactForm.cshtml" />
-    <Content Include="Views\Artifacts\Details.cshtml" />
+    <Content Include="Views\Artefacts\ArtefactForm.cshtml" />
+    <Content Include="Views\Artefacts\Details.cshtml" />
     <Content Include="Views\Samples\Details.cshtml" />
     <Content Include="Views\Samples\SampleForm.cshtml" />
     <Content Include="Views\Analyses\Details.cshtml" />
@@ -698,6 +702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906122010385_ChangedDatesTypesToDateTime2.resx">
       <DependentUpon>201906122010385_ChangedDatesTypesToDateTime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906122036375_RenamedToArtefact.resx">
+      <DependentUpon>201906122036375_RenamedToArtefact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,7 +23,7 @@
                         @Html.ActionLink(analysis.Sample.Artifact.Name, "Details", "Artifacts", new { id = analysis.Sample.Artifact.Id }, new { @class = "link-details" })
                     </h4>
                     <p>by @analysis.Sample.Artifact.Owner.Name | @analysis.Sample.Artifact.Country</p>
-                    <p>@analysis.Sample.Artifact.ArtifactType.Name</p>
+                    <p>@analysis.Sample.Artifact.ArtefactType.Name</p>
                     <p>
                         @Html.ActionLink("sample", "Details", "Samples", new { id = analysis.Sample.Id }, new { @class = "link-details" })
                         type: @analysis.Sample.SampleType.Name

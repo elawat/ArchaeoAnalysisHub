@@ -5,16 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArchaeoAnalysisHub.Models
 {
-    public class Artifact
+    public class Artefact
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Artifact name")]
+        [Display(Name = "Artefact name")]
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public int ArtifactTypeId { get; set; }
-        public ArtifactType ArtifactType { get; set; }
+        public int ArtefactTypeId { get; set; }
+        public ArtefactType ArtefactType { get; set; }
         public ApplicationUser Owner { get; set; }
         [Required]
         public string OwnerId { get; set; }

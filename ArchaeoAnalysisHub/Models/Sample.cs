@@ -14,7 +14,7 @@ namespace ArchaeoAnalysisHub.Models
         public bool IsAnalysed { get; set; }
         [Required]
         public int ArtifactId { get; set; }
-        public Artifact Artifact { get; set; }
+        public Artefact Artifact { get; set; }
         [Required]
         public int SampleTypeId { get; set; }
         public SampleType SampleType { get; set; }
@@ -23,7 +23,7 @@ namespace ArchaeoAnalysisHub.Models
         [Required]
         public string OwnerId { get; set; }
         public bool IsPublic { get; set; }
-        public IEnumerable<Artifact> Artifacts { get; set; }
+        public IEnumerable<Artefact> Artifacts { get; set; }
         public IEnumerable<SampleType> SampleTypes { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime AddedDate { get; set; }

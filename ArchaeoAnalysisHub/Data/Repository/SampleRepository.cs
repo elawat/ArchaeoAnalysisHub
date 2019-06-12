@@ -42,7 +42,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             return context.SampleTypes.ToList();
         }
 
-        public IEnumerable<Artifact> GetArtifactsForUser(string userId)
+        public IEnumerable<Artefact> GetArtifactsForUser(string userId)
         {
             return context.Artifacts
                 .Where(a => a.OwnerId == userId)

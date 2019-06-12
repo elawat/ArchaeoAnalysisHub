@@ -2,7 +2,7 @@
 
 namespace ArchaeoAnalysisHub.Models
 {
-    public class ArtifactType
+    public class ArtefactType
     {
         public int Id { get; set; }
         [Display(Name = "Artifact type")]
