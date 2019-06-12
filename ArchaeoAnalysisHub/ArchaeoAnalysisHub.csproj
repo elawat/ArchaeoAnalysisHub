@@ -225,9 +225,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="BLL\AnalysesService.cs" />
+    <Compile Include="BLL\AnalysisDataPointService.cs" />
     <Compile Include="BLL\Interfaces\IAnalysesService.cs" />
+    <Compile Include="BLL\Interfaces\IAnalysisDataPointService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalysesController.cs" />
+    <Compile Include="Controllers\AnalysisDataPointsController.cs" />
     <Compile Include="Controllers\ArtifactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -339,6 +342,10 @@
     <Compile Include="Migrations\201906102251370_IsDeletedFlagAddedToAnalysis.Designer.cs">
       <DependentUpon>201906102251370_IsDeletedFlagAddedToAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906121537106_AddedIsDeletedFlagToAnalysisDataPoint.cs" />
+    <Compile Include="Migrations\201906121537106_AddedIsDeletedFlagToAnalysisDataPoint.Designer.cs">
+      <DependentUpon>201906121537106_AddedIsDeletedFlagToAnalysisDataPoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -355,6 +362,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalysesViewModel.cs" />
+    <Compile Include="ViewModels\AnalysisDataPointFormViewModel.cs" />
     <Compile Include="ViewModels\AnalysisFormViewModel.cs" />
     <Compile Include="ViewModels\AnalysisSummary.cs" />
     <Compile Include="ViewModels\ArtifactFormViewModel.cs" />
@@ -524,6 +532,7 @@
     <Content Include="Views\Samples\SampleForm.cshtml" />
     <Content Include="Views\Analyses\Details.cshtml" />
     <Content Include="Views\Analyses\AnalysisForm.cshtml" />
+    <Content Include="Views\AnalysisDataPoints\AnalysisDataPointForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -613,6 +622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906102251370_IsDeletedFlagAddedToAnalysis.resx">
       <DependentUpon>201906102251370_IsDeletedFlagAddedToAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121537106_AddedIsDeletedFlagToAnalysisDataPoint.resx">
+      <DependentUpon>201906121537106_AddedIsDeletedFlagToAnalysisDataPoint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

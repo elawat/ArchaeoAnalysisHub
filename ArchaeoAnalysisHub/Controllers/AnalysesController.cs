@@ -1,5 +1,4 @@
 ﻿using ArchaeoAnalysisHub.BLL.Interfaces;
-using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
@@ -8,12 +7,10 @@ namespace ArchaeoAnalysisHub.Controllers
 {
     public class AnalysesController : Controller
     {
-        private IAnalysisRepository repository;
         private IAnalysesService analysesService;
 
-        public AnalysesController(IAnalysisRepository repository, IAnalysesService analysesService)
+        public AnalysesController(IAnalysesService analysesService)
         {
-            this.repository = repository;
             this.analysesService = analysesService;
         }
 

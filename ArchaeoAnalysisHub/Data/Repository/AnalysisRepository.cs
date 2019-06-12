@@ -61,10 +61,11 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Where(a => a.Id == id).FirstOrDefault();
 
             analysis.AnalysisDataPoints = context.AnalysisDataPoints
-                .Where(dp => dp.AnalysisId == id).ToList();
+                .Where(dp => dp.AnalysisId == id
+                && dp.IsDeleted == false)
+                .ToList();
 
             return analysis;
-
         }
 
         public List<Sample> GetSamplesForUser(string userId)
@@ -122,6 +123,40 @@ namespace ArchaeoAnalysisHub.Data.Repository
         {
             var analysis = context.Analyses.Where(a => a.Id == id).FirstOrDefault();
             analysis.IsDeleted = true;
+            context.SaveChanges();
+        }
+
+        public AnalysisDataPoint GetDataPoint(int id)
+        {
+            return context.AnalysisDataPoints
+                .Where(dp => dp.Id == id)
+                .Include(dp => dp.Analysis)
+                .FirstOrDefault();
+        }
+
+        public void UpdateDataPoint(AnalysisDataPointFormViewModel updatedDataPoint)
+        {
+            var dataPoint = context.AnalysisDataPoints
+                .Where(dp => dp.Id == updatedDataPoint.Id)
+                .FirstOrDefault();
+
+            dataPoint.Symbol = updatedDataPoint.Symbol;
+            dataPoint.ResultInPercentage = updatedDataPoint.ResultInPercentage;
+
+            context.SaveChanges();
+        }
+
+        public void CreateDataPoint(AnalysisDataPoint dataPoint)
+        {
+            context.AnalysisDataPoints.Add(dataPoint);
+            context.SaveChanges();
+        }
+
+        public void DeleteDataPoint(int id)
+        {
+            var dataPoint = context.AnalysisDataPoints
+                .Where(dp => dp.Id == id).FirstOrDefault();
+            dataPoint.IsDeleted = true;
             context.SaveChanges();
         }
     }

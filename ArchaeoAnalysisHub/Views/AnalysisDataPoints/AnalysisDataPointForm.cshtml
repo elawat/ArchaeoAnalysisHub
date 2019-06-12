@@ -1,0 +1,42 @@
+﻿@model ArchaeoAnalysisHub.ViewModels.AnalysisDataPointFormViewModel
+
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+<div class="row">
+    <dix class="col-md-5">
+        @using (Html.BeginForm(Model.Action, "AnalysisDataPoints"))
+        {
+            <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.AnalysisId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Symbol)
+                @Html.DropDownListFor(m => m.Symbol, new SelectList(Model.Symbols), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Symbol)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ResultInPercentage)
+                @Html.TextBoxFor(m => m.ResultInPercentage, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ResultInPercentage)
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        }
+    </dix>
+</div>
+
+    @section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+
+

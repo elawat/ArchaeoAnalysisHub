@@ -51,7 +51,7 @@
                 <tr>
                     <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().Symbol)</th>
                     <th scope="col">@Html.DisplayNameFor(m => m.AnalysisDataPoints.FirstOrDefault().ResultInPercentage)</th>
-                </tr>
+                    <th scope="col"></th>
             </thead>
             <tbody>
                 @foreach (var dp in Model.AnalysisDataPoints)
@@ -59,11 +59,16 @@
                     <tr>
                         <td>@dp.Symbol</td>
                         <td>@dp.ResultInPercentage</td>
-                        <td>Edit | Delete</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "AnalysisDataPoints", new { id = dp.Id }, new { @class = "link-details" })
+                            |
+                            @Html.ActionLink("Delete", "Delete", "AnalysisDataPoints", new { id = dp.Id }, new { @class = "link-details" })
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+        <button class="btn btn-secondary" onclick="location.href='@Url.Action("Create","AnalysisDataPoints", new { analysisId = Model.Id })'">Add a new data point</button>
     </div>
 </div>
 
