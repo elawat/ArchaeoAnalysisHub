@@ -402,6 +402,14 @@
     <Compile Include="Migrations\201906121958203_RemovedIdDeletedFlags.Designer.cs">
       <DependentUpon>201906121958203_RemovedIdDeletedFlags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906122004499_AddedAddedDate.cs" />
+    <Compile Include="Migrations\201906122004499_AddedAddedDate.Designer.cs">
+      <DependentUpon>201906122004499_AddedAddedDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906122010385_ChangedDatesTypesToDateTime2.cs" />
+    <Compile Include="Migrations\201906122010385_ChangedDatesTypesToDateTime2.Designer.cs">
+      <DependentUpon>201906122010385_ChangedDatesTypesToDateTime2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -684,6 +692,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906121958203_RemovedIdDeletedFlags.resx">
       <DependentUpon>201906121958203_RemovedIdDeletedFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906122004499_AddedAddedDate.resx">
+      <DependentUpon>201906122004499_AddedAddedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906122010385_ChangedDatesTypesToDateTime2.resx">
+      <DependentUpon>201906122010385_ChangedDatesTypesToDateTime2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

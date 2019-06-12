@@ -29,6 +29,8 @@ namespace ArchaeoAnalysisHub.ViewModels
         public string Heading { get; set; }
         public IEnumerable<Artifact> Artifacts { get; set; }
         public IEnumerable<SampleType> SampleTypes { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public System.DateTime AddedDate { get; set; }
 
         public string Action
         {

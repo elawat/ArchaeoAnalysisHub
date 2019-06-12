@@ -46,6 +46,8 @@
         }
         <div class="property">Added by:</div>
         <div>@Html.DisplayFor(m => m.Owner.Name)</div>
+        <div class="property">Added date:</div>
+        <div>@Html.DisplayFor(m => m.AddedDate)</div>
     </div>
     <div class="col-md-4">
         @Html.ActionLink("Edit", "Edit", "Analyses", new { id = @Model.Id }, new { @class = "link-details" })

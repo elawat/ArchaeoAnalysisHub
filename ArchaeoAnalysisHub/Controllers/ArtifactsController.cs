@@ -2,6 +2,7 @@
 using ArchaeoAnalysisHub.Models;
 using ArchaeoAnalysisHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.Controllers
@@ -27,8 +28,8 @@ namespace ArchaeoAnalysisHub.Controllers
                 Country = artifact.Country,
                 Site = artifact.Site,
                 Owner = artifact.Owner,
-                Samples = artifact.Samples
-
+                Samples = artifact.Samples,
+                AddedDate = artifact.AddedDate
             };
 
             return View(viewModel);
@@ -103,6 +104,7 @@ namespace ArchaeoAnalysisHub.Controllers
                 Site = viewModel.Site,
                 OwnerId = User.Identity.GetUserId(),
                 IsPublic = viewModel.IsPublic,
+                AddedDate = DateTime.Now
             };
 
             repository.Create(artifact);

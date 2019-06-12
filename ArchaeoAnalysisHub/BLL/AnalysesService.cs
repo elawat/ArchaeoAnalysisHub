@@ -75,7 +75,8 @@ namespace ArchaeoAnalysisHub.BLL
                 SpectrumImage = analysis.SpectrumImage,
                 SpectrumImageId = analysis.SpectrumImageId,
                 SpectrumNo = analysis.SpectrumNo,
-                AnalysisDataPoints = analysis.AnalysisDataPoints
+                AnalysisDataPoints = analysis.AnalysisDataPoints,
+                AddedDate = analysis.AddedDate
             };
         }
 
@@ -114,7 +115,8 @@ namespace ArchaeoAnalysisHub.BLL
                 IsNormalised = viewModel.IsNormalised,
                 IsPublic = viewModel.IsPublic,
                 SpectrumNo = viewModel.SpectrumNo,
-                OwnerId = userId
+                OwnerId = userId,
+                AddedDate = DateTime.Now
             };
 
             repository.Create(analysis);

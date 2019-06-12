@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArchaeoAnalysisHub.Models
 {
@@ -28,5 +29,7 @@ namespace ArchaeoAnalysisHub.Models
         public Image SpectrumImage { get; set; }
         [Display(Name = "Spectrum")]
         public string SpectrumNo { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime AddedDate { get; set; }
     }
 }

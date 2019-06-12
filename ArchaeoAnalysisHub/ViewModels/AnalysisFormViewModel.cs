@@ -36,6 +36,8 @@ namespace ArchaeoAnalysisHub.ViewModels
         public ICollection<Artifact> Artifacts { get; set; }
         public ICollection<AnalysisType> AnalysisTypes { get; set; }
         public ICollection<string> Symbols { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public System.DateTime AddedDate { get; set; }
 
         public string Action
         {

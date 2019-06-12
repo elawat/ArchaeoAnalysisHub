@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArchaeoAnalysisHub.Models
 {
@@ -23,5 +25,7 @@ namespace ArchaeoAnalysisHub.Models
         public bool IsPublic { get; set; }
         public IEnumerable<Artifact> Artifacts { get; set; }
         public IEnumerable<SampleType> SampleTypes { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime AddedDate { get; set; }
     }
 }
