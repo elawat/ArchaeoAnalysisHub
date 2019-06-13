@@ -21,14 +21,14 @@ namespace ArchaeoAnalysisHub.Data.Repository
             return context.Analyses
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
-                .Include(a => a.Sample.Artifact)
-                .Include(a => a.Sample.Artifact.ArtefactType)
+                .Include(a => a.Sample.Artefact)
+                .Include(a => a.Sample.Artefact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.AnalysisDataPoints)
                 .Include(a => a.GeneralImage)
                 .Include(a => a.SpectrumImage)
                 .Include(a => a.Owner)
-                .Where(a => a.Sample.Artifact.Name == "PB-24a")
+                .Where(a => a.Sample.Artefact.Name == "PB-24a")
                 .Take(10)
                 .ToList();
         }
@@ -38,8 +38,8 @@ namespace ArchaeoAnalysisHub.Data.Repository
             return context.Analyses
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
-                .Include(a => a.Sample.Artifact)
-                .Include(a => a.Sample.Artifact.ArtefactType)
+                .Include(a => a.Sample.Artefact)
+                .Include(a => a.Sample.Artefact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.AnalysisDataPoints)
                 .Include(a => a.GeneralImage)
@@ -53,7 +53,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             var analysis = context.Analyses
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
-                .Include(a => a.Sample.Artifact.ArtefactType)
+                .Include(a => a.Sample.Artefact.ArtefactType)
                 .Include(a => a.AnalysisType)
                 .Include(a => a.Owner)
                 .Include(a => a.SpectrumImage)
@@ -70,14 +70,14 @@ namespace ArchaeoAnalysisHub.Data.Repository
         public List<Sample> GetSamplesForUser(string userId)
         {
             return context.Samples
-                .Include(s => s.Artifact)
+                .Include(s => s.Artefact)
                 .Where(s => s.OwnerId == userId)
                 .ToList();
         }
 
-        public List<Artefact> GetArtifactsForUser(string userId)
+        public List<Artefact> GetArtefactsForUser(string userId)
         {
-            return context.Artifacts
+            return context.Artefacts
                 .Where(s => s.OwnerId == userId)
                 .ToList();
         }
@@ -89,9 +89,8 @@ namespace ArchaeoAnalysisHub.Data.Repository
 
         public List<string> GetSymbols()
         {
-            return context.AnalysisDataPoints
-                .Select(dp => dp.Symbol)
-                .Distinct()
+            return context.Symbols
+                .Select(dp => dp.Name)
                 .ToList();
         }
 

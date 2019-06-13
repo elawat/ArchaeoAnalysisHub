@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Artifact.Name | sample @Model.Id</h2>
+<h2>@Model.Artefact.Name | sample @Model.Id</h2>
 <div class="row">
     <div class="col-md-5">
         <div class="property">@Html.DisplayNameFor(m => m.SampleType.Name):</div>
         <div>@Html.DisplayFor(m => m.SampleType.Name)</div>
-        <div class="property">@Html.DisplayNameFor(m => m.Artifact.Name):</div>
+        <div class="property">@Html.DisplayNameFor(m => m.Artefact.Name):</div>
         <div>
-            @Html.ActionLink(Model.Artifact.Name, "Details", "Artifacts", new { id = Model.Artifact.Id }, new { @class = "link-details" })
+            @Html.ActionLink(Model.Artefact.Name, "Details", "Artefacts", new { id = Model.Artefact.Id }, new { @class = "link-details" })
         </div>
         <div class="property">Added by:</div>
         <div>@Html.DisplayFor(m => m.Owner.Name)</div>

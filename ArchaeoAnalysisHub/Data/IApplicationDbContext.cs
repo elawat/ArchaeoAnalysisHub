@@ -7,8 +7,8 @@ namespace ArchaeoAnalysisHub.Data
     {
         DbSet<Sample> Samples { get; set; }
         DbSet<SampleType> SampleTypes { get; set; }
-        DbSet<Artefact> Artifacts { get; set; }
-        DbSet<ArtefactType> ArtifactTypes { get; set; }
+        DbSet<Artefact> Artefacts { get; set; }
+        DbSet<ArtefactType> ArtefactTypes { get; set; }
         DbSet<Analysis> Analyses { get; set; }
         DbSet<AnalysisType> AnalysisTypes { get; set; }
         DbSet<AnalysisDataPoint> AnalysisDataPoints { get; set; }

@@ -414,6 +414,18 @@
     <Compile Include="Migrations\201906122036375_RenamedToArtefact.Designer.cs">
       <DependentUpon>201906122036375_RenamedToArtefact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906131617537_AddedSymbol.cs" />
+    <Compile Include="Migrations\201906131617537_AddedSymbol.Designer.cs">
+      <DependentUpon>201906131617537_AddedSymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906131703071_AddedPeriodToArtefact.cs" />
+    <Compile Include="Migrations\201906131703071_AddedPeriodToArtefact.Designer.cs">
+      <DependentUpon>201906131703071_AddedPeriodToArtefact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906131726598_RenamedAllToArtefact.cs" />
+    <Compile Include="Migrations\201906131726598_RenamedAllToArtefact.Designer.cs">
+      <DependentUpon>201906131726598_RenamedAllToArtefact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -427,6 +439,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Symbol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnalysesViewModel.cs" />
@@ -705,6 +718,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906122036375_RenamedToArtefact.resx">
       <DependentUpon>201906122036375_RenamedToArtefact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131617537_AddedSymbol.resx">
+      <DependentUpon>201906131617537_AddedSymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131703071_AddedPeriodToArtefact.resx">
+      <DependentUpon>201906131703071_AddedPeriodToArtefact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131726598_RenamedAllToArtefact.resx">
+      <DependentUpon>201906131726598_RenamedAllToArtefact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

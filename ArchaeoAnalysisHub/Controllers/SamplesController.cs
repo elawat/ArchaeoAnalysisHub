@@ -23,8 +23,8 @@ namespace ArchaeoAnalysisHub.Controllers
             {
                 Id = sample.Id,
                 IsAnalysed = sample.IsAnalysed,
-                ArtifactId = sample.ArtifactId,
-                Artifact = sample.Artifact,
+                ArtefactId = sample.ArtefactId,
+                Artefact = sample.Artefact,
                 Analyses = sample.Analyses,
                 SampleTypeId = sample.SampleTypeId,
                 SampleType = sample.SampleType,
@@ -46,9 +46,9 @@ namespace ArchaeoAnalysisHub.Controllers
                 Heading = "Edit a Sample",
                 Id = sample.Id,
                 IsAnalysed = sample.IsAnalysed,
-                ArtifactId = sample.ArtifactId,
-                Artifact = sample.Artifact,
-                Artifacts = sample.Artifacts,
+                ArtefactId = sample.ArtefactId,
+                Artefact = sample.Artefact,
+                Artefacts = sample.Artefacts,
                 SampleTypeId = sample.SampleTypeId,
                 SampleType = sample.SampleType,
                 SampleTypes = sample.SampleTypes,
@@ -66,7 +66,7 @@ namespace ArchaeoAnalysisHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.SampleTypes = repository.GetSampleTypes();
-                viewModel.Artifacts = repository.GetArtifactsForUser(userId);
+                viewModel.Artefacts = repository.GetArtefactsForUser(userId);
                 return View("SampleForm", viewModel);
             }
 
@@ -85,7 +85,7 @@ namespace ArchaeoAnalysisHub.Controllers
             var viewModel = new SampleFormViewModel()
             {
                 SampleTypes = repository.GetSampleTypes(),
-                Artifacts = repository.GetArtifactsForUser(userId),
+                Artefacts = repository.GetArtefactsForUser(userId),
                 Heading = "Create a sample",
             };
 
@@ -104,21 +104,21 @@ namespace ArchaeoAnalysisHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.SampleTypes = repository.GetSampleTypes();
-                viewModel.Artifacts = repository.GetArtifactsForUser(userId);
+                viewModel.Artefacts = repository.GetArtefactsForUser(userId);
                 return View("SampleForm", viewModel);
             }
 
-            var artifact = new Sample
+            var artefact = new Sample
             {
                 IsAnalysed = viewModel.IsAnalysed,
-                ArtifactId = viewModel.ArtifactId,
+                ArtefactId = viewModel.ArtefactId,
                 SampleTypeId = viewModel.SampleTypeId,
                 OwnerId = userId,
                 IsPublic = viewModel.IsPublic,
                 AddedDate = DateTime.Now
             };
 
-            repository.Create(artifact);
+            repository.Create(artefact);
 
             return RedirectToAction("Index", "Home");
         }

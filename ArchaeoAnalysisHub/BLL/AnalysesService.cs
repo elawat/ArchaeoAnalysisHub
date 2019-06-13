@@ -85,7 +85,7 @@ namespace ArchaeoAnalysisHub.BLL
             return new AnalysisFormViewModel()
             {
                 Samples = repository.GetSamplesForUser(userId),
-                Artifacts = repository.GetArtifactsForUser(userId),
+                Artefacts = repository.GetArtefactsForUser(userId),
                 AnalysisTypes = repository.GetAnalysisTypes(),
                 Symbols = repository.GetSymbols(),
                 AnalysisDataPoints = new List<AnalysisDataPoint>(),
@@ -96,7 +96,7 @@ namespace ArchaeoAnalysisHub.BLL
         public AnalysisFormViewModel RepopulateListsForAnalysisEmptyView(string userId, AnalysisFormViewModel viewModel)
         {
             viewModel.Samples = repository.GetSamplesForUser(userId);
-            viewModel.Artifacts = repository.GetArtifactsForUser(userId);
+            viewModel.Artefacts = repository.GetArtefactsForUser(userId);
             viewModel.AnalysisTypes = repository.GetAnalysisTypes();
             viewModel.Symbols = repository.GetSymbols();
             viewModel.AnalysisDataPoints = new List<AnalysisDataPoint>();
@@ -130,7 +130,7 @@ namespace ArchaeoAnalysisHub.BLL
             {
                 Heading = "Edit an analysis",
                 Samples = repository.GetSamplesForUser(userId),
-                Artifacts = repository.GetArtifactsForUser(userId),
+                Artefacts = repository.GetArtefactsForUser(userId),
                 AnalysisTypes = repository.GetAnalysisTypes(),
                 Symbols = repository.GetSymbols(),
                 Id = id,

@@ -33,7 +33,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public string SpectrumNo { get; set; }
         public string Heading { get; set; }
         public ICollection<Sample> Samples { get; set; }
-        public ICollection<Artefact> Artifacts { get; set; }
+        public ICollection<Artefact> Artefacts { get; set; }
         public ICollection<AnalysisType> AnalysisTypes { get; set; }
         public ICollection<string> Symbols { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]

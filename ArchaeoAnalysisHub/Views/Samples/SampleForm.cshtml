@@ -17,9 +17,9 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Artifact)
-        @Html.DropDownListFor(m => m.ArtifactId, new SelectList(Model.Artifacts, "Id", "Name"), "", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Artifact)
+        @Html.LabelFor(m => m.Artefact)
+        @Html.DropDownListFor(m => m.ArtefactId, new SelectList(Model.Artefacts, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Artefact)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.IsAnalysed)

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
 {
-    public interface IArtifactRepository
+    public interface IArtefactRepository
     {
-        Artefact GetArtifact(int id);
-        IEnumerable<ArtefactType> GetArtifactTypes();
+        Artefact GetArtefact(int id);
+        IEnumerable<ArtefactType> GetArtefactTypes();
         void Update(ArtefactFormViewModel viewModel);
-        void Create(Artefact artifact);
+        void Create(Artefact artefact);
         void Delete(int id);
     }
 }

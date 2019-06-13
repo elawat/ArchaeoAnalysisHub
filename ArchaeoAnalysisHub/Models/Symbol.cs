@@ -2,10 +2,12 @@
 
 namespace ArchaeoAnalysisHub.Models
 {
-    public class ArtefactType
+    public class Symbol
     {
+        [Key]
         public int Id { get; set; }
-        [Display(Name = "Artefact type")]
+        [Required]
+        [Display(Name ="Symbol")]
         public string Name { get; set; }
     }
 }

@@ -9,27 +9,28 @@ namespace ArchaeoAnalysisHub.Controllers
 {
     public class ArtefactsController : Controller
     {
-        private IArtifactRepository repository;
+        private IArtefactRepository repository;
 
-        public ArtefactsController(IArtifactRepository repository)
+        public ArtefactsController(IArtefactRepository repository)
         {
             this.repository = repository;
         }
 
         public ActionResult Details(int id)
         {
-            var artefact = repository.GetArtifact(id);
+            var artefact = repository.GetArtefact(id);
             var viewModel = new ArtefactFormViewModel()
             {
                 Id = artefact.Id,
                 Name = artefact.Name,
                 Description = artefact.Description,
-                ArtifactType = artefact.ArtefactType,
+                ArtefactType = artefact.ArtefactType,
                 Country = artefact.Country,
                 Site = artefact.Site,
                 Owner = artefact.Owner,
                 Samples = artefact.Samples,
-                AddedDate = artefact.AddedDate
+                AddedDate = artefact.AddedDate,
+                Period = artefact.Period
             };
 
             return View(viewModel);
@@ -38,19 +39,19 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var artefact = repository.GetArtifact(id);
+            var artefact = repository.GetArtefact(id);
             var viewModel = new ArtefactFormViewModel()
             {
-                Heading = "Edit an Artifact",
+                Heading = "Edit an Artefact",
                 Id = artefact.Id,
                 Name = artefact.Name,
                 Description = artefact.Description,
-                ArtifactTypeId = artefact.ArtefactTypeId,
-                ArtifactType = artefact.ArtefactType,
+                ArtefactTypeId = artefact.ArtefactTypeId,
+                ArtefactType = artefact.ArtefactType,
                 Country = artefact.Country,
                 Site = artefact.Site,
-                ArtefactTypes = repository.GetArtifactTypes()
-
+                ArtefactTypes = repository.GetArtefactTypes(),
+                Period = artefact.Period
             };
 
             return View("ArtefactForm", viewModel);
@@ -61,13 +62,13 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.ArtefactTypes = repository.GetArtifactTypes();
+                viewModel.ArtefactTypes = repository.GetArtefactTypes();
                 return View("ArtefactForm", viewModel);
             }
 
             repository.Update(viewModel);
 
-            return RedirectToAction("Details", "Artifacts", new { id = viewModel.Id });
+            return RedirectToAction("Details", "Artefacts", new { id = viewModel.Id });
 
         }
 
@@ -76,8 +77,8 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             var viewModel = new ArtefactFormViewModel()
             {
-                ArtefactTypes = repository.GetArtifactTypes(),
-                Heading = "Create an artifact",
+                ArtefactTypes = repository.GetArtefactTypes(),
+                Heading = "Create an artefact",
             };
 
             return View("ArtefactForm", viewModel);
@@ -90,24 +91,25 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.ArtefactTypes = repository.GetArtifactTypes();
+                viewModel.ArtefactTypes = repository.GetArtefactTypes();
                 return View("ArtefactForm", viewModel);
             }
 
-            var artifact = new Artefact
+            var artefact = new Artefact
             {
                 Id = viewModel.Id,
                 Name = viewModel.Name,
                 Description = viewModel.Name,
-                ArtefactTypeId = viewModel.ArtifactTypeId,
+                ArtefactTypeId = viewModel.ArtefactTypeId,
                 Country = viewModel.Country,
                 Site = viewModel.Site,
                 OwnerId = User.Identity.GetUserId(),
                 IsPublic = viewModel.IsPublic,
-                AddedDate = DateTime.Now
+                AddedDate = DateTime.Now,
+                Period = viewModel.Period
             };
 
-            repository.Create(artifact);
+            repository.Create(artefact);
 
             return RedirectToAction("Index", "Home");
         }

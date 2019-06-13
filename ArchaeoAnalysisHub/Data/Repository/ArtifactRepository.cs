@@ -7,63 +7,63 @@ using System.Linq;
 
 namespace ArchaeoAnalysisHub.Data.Repository
 {
-    public class ArtifactRepository : IArtifactRepository
+    public class ArtefactRepository : IArtefactRepository
     {
         private ApplicationDbContext context;
 
-        public ArtifactRepository()
+        public ArtefactRepository()
         {
             this.context = new ApplicationDbContext();
         }
 
-        public Artefact GetArtifact(int id)
+        public Artefact GetArtefact(int id)
         {
-            var artifact = context.Artifacts
+            var artefact = context.Artefacts
                 .Include(a => a.ArtefactType)
                 .Include(a => a.Owner)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
 
-            artifact.Samples = context
+            artefact.Samples = context
                 .Samples
                 .Include(s => s.SampleType)
-                .Where(s => s.ArtifactId == id).ToList();
+                .Where(s => s.ArtefactId == id).ToList();
 
-            return artifact;
+            return artefact;
         }
 
-        public IEnumerable<ArtefactType> GetArtifactTypes()
+        public IEnumerable<ArtefactType> GetArtefactTypes()
         {
-            return context.ArtifactTypes.ToList();
+            return context.ArtefactTypes.ToList();
         }
 
-        public void Update(ArtefactFormViewModel updatedArtifact)
+        public void Update(ArtefactFormViewModel updatedArtefact)
         {
             
-            var artifact = context.Artifacts
-                .Where(x => x.Id == updatedArtifact.Id)
+            var artefact = context.Artefacts
+                .Where(x => x.Id == updatedArtefact.Id)
                 .Single();
 
-            artifact.Name = updatedArtifact.Name;
-            artifact.Description = updatedArtifact.Description;
-            artifact.ArtefactTypeId = updatedArtifact.ArtifactTypeId;
-            artifact.Country = updatedArtifact.Country;
-            artifact.Site = updatedArtifact.Site;
-            artifact.IsPublic = updatedArtifact.IsPublic;
+            artefact.Name = updatedArtefact.Name;
+            artefact.Description = updatedArtefact.Description;
+            artefact.ArtefactTypeId = updatedArtefact.ArtefactTypeId;
+            artefact.Country = updatedArtefact.Country;
+            artefact.Site = updatedArtefact.Site;
+            artefact.IsPublic = updatedArtefact.IsPublic;
 
             context.SaveChanges();
         }
 
-        public void Create(Artefact artifact)
+        public void Create(Artefact artefact)
         {
-            context.Artifacts.Add(artifact);
+            context.Artefacts.Add(artefact);
             context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var artifact = context.Artifacts.Where(a => a.Id == id).FirstOrDefault();
-            context.Artifacts.Remove(artifact);
+            var artefact = context.Artefacts.Where(a => a.Id == id).FirstOrDefault();
+            context.Artefacts.Remove(artefact);
             context.SaveChanges();
         }
     }

@@ -10,12 +10,14 @@
         <div class="col-md-4">
             <div class="property">@Html.DisplayNameFor(m => m.Description):</div>
             <div>@Html.DisplayFor(m => m.Description)</div>
-            <div class="property">@Html.DisplayNameFor(m => m.ArtifactType.Name):</div>
-            <div>@Html.DisplayFor(m => m.ArtifactType.Name)</div>
+            <div class="property">@Html.DisplayNameFor(m => m.ArtefactType.Name):</div>
+            <div>@Html.DisplayFor(m => m.ArtefactType.Name)</div>
+            <div class="property">@Html.DisplayNameFor(m => m.Period):</div>
+            <div>@Html.DisplayFor(m => m.Period)</div>
             <div class="property">Added by:</div>
             <div>@Html.DisplayFor(m => m.Owner.Name)</div>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             <div class="property">@Html.DisplayNameFor(m => m.Country):</div>
             <div>@Html.DisplayFor(m => m.Country)</div>
             <div class="property">@Html.DisplayNameFor(m => m.Site):</div>
@@ -24,9 +26,9 @@
             <div>@Html.DisplayFor(m => m.AddedDate)</div>
         </div>
         <div class="col-md-2">
-            @Html.ActionLink("Edit", "Edit", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+            @Html.ActionLink("Edit", "Edit", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
             |
-            @Html.ActionLink("Delete", "Delete", "Artifacts", new { id = @Model.Id }, new { @class = "link-details" })
+            @Html.ActionLink("Delete", "Delete", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
         </div>
     </div>
     <div class="row">

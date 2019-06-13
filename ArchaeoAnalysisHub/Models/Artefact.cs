@@ -24,5 +24,6 @@ namespace ArchaeoAnalysisHub.Models
         public IEnumerable<Sample> Samples { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime AddedDate { get; set; }
+        public string Period { get; set; }
     }
 }

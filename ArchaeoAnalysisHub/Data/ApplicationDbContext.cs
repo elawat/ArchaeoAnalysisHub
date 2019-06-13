@@ -8,12 +8,13 @@ namespace ArchaeoAnalysisHub.Data
     {
         public DbSet<Sample> Samples { get; set; }
         public DbSet<SampleType> SampleTypes { get; set; }
-        public DbSet<Artefact> Artifacts { get; set; }
-        public DbSet<ArtefactType> ArtifactTypes { get; set; }
+        public DbSet<Artefact> Artefacts { get; set; }
+        public DbSet<ArtefactType> ArtefactTypes { get; set; }
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<AnalysisType> AnalysisTypes { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<AnalysisDataPoint> AnalysisDataPoints { get; set; }
+        public DbSet<Symbol> Symbols { get; set; }
 
         public ApplicationDbContext()
             : base("LocalConnection", throwIfV1Schema: false)

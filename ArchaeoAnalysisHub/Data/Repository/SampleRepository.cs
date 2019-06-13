@@ -21,7 +21,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             var sample = context.Samples
                 .Include(s => s.Owner)
                 .Include(s => s.SampleType)
-                .Include(s => s.Artifact)
+                .Include(s => s.Artefact)
                 .Where(x => x.Id == id).FirstOrDefault();
 
             sample.Analyses = context.Analyses
@@ -29,7 +29,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Include(a => a.Owner)
                 .Where(a => a.SampleId == id).ToList();
 
-            sample.Artifacts = context.Artifacts
+            sample.Artefacts = context.Artefacts
                 .Where(a => a.OwnerId == sample.OwnerId).ToList();
 
             sample.SampleTypes = context.SampleTypes.ToList();
@@ -42,9 +42,9 @@ namespace ArchaeoAnalysisHub.Data.Repository
             return context.SampleTypes.ToList();
         }
 
-        public IEnumerable<Artefact> GetArtifactsForUser(string userId)
+        public IEnumerable<Artefact> GetArtefactsForUser(string userId)
         {
-            return context.Artifacts
+            return context.Artefacts
                 .Where(a => a.OwnerId == userId)
                 .ToList();
         }
@@ -57,7 +57,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Single();
 
             sample.IsAnalysed = updatedSample.IsAnalysed;
-            sample.ArtifactId = updatedSample.ArtifactId;
+            sample.ArtefactId = updatedSample.ArtefactId;
             sample.SampleTypeId = updatedSample.SampleTypeId;
             sample.IsPublic = updatedSample.IsPublic;
 
