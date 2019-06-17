@@ -1,5 +1,4 @@
-﻿using ArchaeoAnalysisHub.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ArchaeoAnalysisHub.ViewModels
 {
@@ -7,5 +6,6 @@ namespace ArchaeoAnalysisHub.ViewModels
     {
         public IEnumerable<AnalysisSummary> Analyses { get; set; }
         public string Heading { get; set; }
+        public bool IsInSelectMode { get; set; }
     }
 }

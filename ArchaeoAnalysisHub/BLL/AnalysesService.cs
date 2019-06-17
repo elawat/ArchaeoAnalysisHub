@@ -11,12 +11,15 @@ namespace ArchaeoAnalysisHub.BLL
     public class AnalysesService : IAnalysesService
     {
         private IAnalysisRepository repository;
-        private List<Analysis> analyses;
 
         public AnalysesService(IAnalysisRepository repository)
         {
             this.repository = repository;
-            this.analyses = repository.GetAll(); 
+        }
+
+        public Analysis GetAnalysis(int id)
+        {
+            return repository.GetAnalysis(id);
         }
 
         public List<AnalysisSummary> GetSummary()
@@ -47,7 +50,7 @@ namespace ArchaeoAnalysisHub.BLL
 
         public List<Analysis> GetAll()
         {
-            return analyses;
+            return repository.GetAll();
         }
 
         public List<Analysis> GetAllForHomeView()
@@ -57,7 +60,7 @@ namespace ArchaeoAnalysisHub.BLL
 
         public AnalysisFormViewModel GetAnalysisDetailedView(int id)
         {
-            var analysis = analyses.Where(a => a.Id == id).FirstOrDefault();
+            var analysis = repository.GetAll().Where(a => a.Id == id).FirstOrDefault();
             return new AnalysisFormViewModel()
             {
                 Id = analysis.Id,

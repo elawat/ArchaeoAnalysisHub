@@ -1,4 +1,5 @@
-﻿using ArchaeoAnalysisHub.BLL.Interfaces;
+﻿using ArchaeoAnalysisHub.BLL;
+using ArchaeoAnalysisHub.BLL.Interfaces;
 using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.ViewModels;
 using System.Web.Mvc;
@@ -20,7 +21,8 @@ namespace ArchaeoAnalysisHub.Controllers
             var viewModel = new AnalysesViewModel()
             {
                 Analyses = analyses,
-                Heading = "Analyses"
+                Heading = "Analyses",
+                IsInSelectMode = false
             };
 
             return View("Analyses", viewModel);

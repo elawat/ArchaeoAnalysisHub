@@ -4,6 +4,7 @@ using ArchaeoAnalysisHub.Controllers;
 using ArchaeoAnalysisHub.Data;
 using ArchaeoAnalysisHub.Data.Repository;
 using ArchaeoAnalysisHub.Data.Repository.Interfaces;
+using System.Web.Http;
 using System.Web.Mvc;
 using Unity;
 using Unity.Injection;
@@ -30,7 +31,7 @@ namespace ArchaeoAnalysisHub
 
             container.RegisterType<IAnalysesService, AnalysesService>();
             container.RegisterType<IAnalysisDataPointService, AnalysisDataPointService>();
-
+            container.RegisterType<IAnalysesBasket, AnalysesBasket>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

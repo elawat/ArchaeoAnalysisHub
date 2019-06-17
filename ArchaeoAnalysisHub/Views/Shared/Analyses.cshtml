@@ -3,10 +3,20 @@
     ViewBag.Title = Model.Heading;
 }
 
-<h2>@Model.Heading</h2>
 
 <div class="row">
+    <div class="container col-sm-9">
+        <div class="col-sm-5">
+            <h3>@Model.Heading</h3>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary pull-right" style="margin-top: 15px;">Create ternary plot</button>
+        </div>
+    </div>
+    
+</div>
 
+<div class="row">
 
     @foreach (var analysis in Model.Analyses)
     {
@@ -34,9 +44,9 @@
                             <tr>
                                 @foreach (var dp in analysis.AnalysisDataPoints)
                                 {
-                                <th scope="col" class="@analysis.Id">
-                                    @dp.Symbol
-                                </th>
+                                    <th scope="col" class="@analysis.Id">
+                                        @dp.Symbol
+                                    </th>
                                 }
                             </tr>
                         </thead>
@@ -51,7 +61,12 @@
                     </table>
                 </div>
                 <div class="col-sm-2 list-right-menu">
-                    <button class="btn btn-secondary" onclick="location.href='@Url.Action("Details","Analyses", new { id = analysis.Id })'">View</button>
+                    <button class="btn btn-secondary btn-sm pull-right with-margin" onclick="location.href='@Url.Action("Details","Analyses", new { id = analysis.Id })'">View</button>
+                    @if (Model.IsInSelectMode)
+                    {
+                        <button data-analysis-id="@analysis.Id" class="btn btn-default btn-sm pull-right with-margin js-toggle-plotting">Plot?</button>
+                    }
+
                 </div>
             </div>
             <hr />
@@ -66,9 +81,27 @@
 
 @section scripts
 {
-    
-        <script type="text/javascript">
-        
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.getJSON("/api/plotting/getAnalysesToPlot", function (analyses) {
+                if (analyses.length == 0) {
+                    return;
+                }
+                console.log(analyses.length);
+                console.log(analyses);
+                analyses.forEach(function (element) {
+                    var button = $("[data-analysis-id=" + element.analysisId + "]");
+                    button
+                        .removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Plotting");
+                });
+            });
+        });
+
+
         $(document).ready(function () {
             var elements = $(".wordcloud");
             for (var i = 0; i < elements.length; i++) {
@@ -77,7 +110,7 @@
                 var symbols = $("th." + element.id);
                 var percentages = $("td." + element.id);
                 for (j = 0; j < symbols.length; j++) {
-                    wordsList.push({ text: symbols[j].innerText, weight: Math.round(parseInt(percentages[j].innerText, 10) /10) });
+                    wordsList.push({ text: symbols[j].innerText, weight: Math.round(parseInt(percentages[j].innerText, 10) / 10) });
                 }
                 $("#" + element.id).jQCloud(wordsList,
                     {
@@ -88,7 +121,40 @@
                 );
             }
         });
-        </script>
+
+        $(document).ready(function () {
+            $(".js-toggle-plotting").click(function (e) {
+                console.log('test')
+                var button = $(e.target);
+                if (button.text() == 'Plot?') {
+                    $.post("/api/plotting/plot", { AnalysisId: button.attr("data-analysis-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Plotting");
+                        })
+                        .fail(function () {
+                            alert("Something failed!");
+                        });
+                }
+                else {
+                    $.post("/api/plotting/unplot", { AnalysisId: button.attr("data-analysis-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Plot?");
+                        })
+                        .fail(function () {
+                            alert("Something failed!");
+                        });
+
+                }
+
+            });
+        });
+    </script>
 
 }
 

@@ -6,6 +6,7 @@ namespace ArchaeoAnalysisHub.BLL.Interfaces
 {
     public interface IAnalysesService
     {
+        Analysis GetAnalysis(int id);
         List<AnalysisSummary> GetSummary();
         List<Analysis> GetAll();
         AnalysisFormViewModel GetAnalysisDetailedView(int id);
