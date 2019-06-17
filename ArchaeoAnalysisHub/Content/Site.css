@@ -141,3 +141,40 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     margin-top: 5px;
 }
 
+line.tick {
+    stroke-width: 0.5px;
+}
+
+line.minor-tick {
+    stroke-width: 1;
+    stroke-opacity: 0.1;
+}
+
+.a-axis {
+    stroke: #333;
+}
+
+.b-axis {
+    stroke: #333;
+}
+
+.c-axis {
+    stroke: #333;
+}
+
+.axis-title {
+    font-size: 1.5rem;
+}
+
+text.tick-text {
+    font-weight: lighter;
+    font-size: 1rem;
+    fill: #333;
+    stroke: none;
+}
+
+circle {
+    fill: #DB7365;
+    stroke: #DB7365;
+    stroke-width: 2px;
+}

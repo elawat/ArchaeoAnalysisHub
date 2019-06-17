@@ -30,5 +30,9 @@ namespace ArchaeoAnalysisHub.Controllers.Api
             return View("Analyses", viewModel);
         }
 
+        public ActionResult TernaryPlot()
+        {
+            return View("TernaryPlot");
+        }
     }
 }
