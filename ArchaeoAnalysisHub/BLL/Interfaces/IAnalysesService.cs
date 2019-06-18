@@ -16,5 +16,7 @@ namespace ArchaeoAnalysisHub.BLL.Interfaces
         AnalysisFormViewModel GetAnalysisDeteiledViewForEdit(int id, string userId);
         void UpdateAnalysis(AnalysisFormViewModel viewModel);
         void DeleteAnalysis(int id);
+        IEnumerable<string> GetSymbols();
+        IEnumerable<Analysis> GetNormalisedAnalysesForSelectedSymbols(List<string> symbols, List<Analysis> analyses);
     }
 }

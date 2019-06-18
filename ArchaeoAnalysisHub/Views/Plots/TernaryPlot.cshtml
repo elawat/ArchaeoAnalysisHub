@@ -1,31 +1,42 @@
-﻿
+﻿@model ArchaeoAnalysisHub.ViewModels.TernaryPlotViewModel
+@{
+    ViewBag.Title = Model.Heading;
+}
+
 <head>
     <style>
         line.tick {
             stroke-width: 0.5px;
         }
+
         line.minor-tick {
             stroke-width: 1;
             stroke-opacity: 0.1;
         }
+
         .a-axis {
             stroke: #333;
         }
+
         .b-axis {
             stroke: #333;
         }
+
         .c-axis {
             stroke: #333;
         }
+
         .axis-title {
             font-size: 1.5rem;
         }
+
         text.tick-text {
             font-weight: lighter;
             font-size: 1rem;
             fill: #333;
             stroke: none;
         }
+
         circle {
             fill: #DB7365;
             stroke: #DB7365;
@@ -39,14 +50,79 @@
     </style>
 </head>
 
-<a id="nextbutton" href="#">Data change</a>
-<div id="plot"></div>
+<h2>@Model.Heading</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.SymbolA)
+        @Html.DropDownListFor(m => m.SymbolA, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolA" })
+        @Html.ValidationMessageFor(m => m.SymbolA)
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.SymbolB)
+        @Html.DropDownListFor(m => m.SymbolB, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolB" })
+        @Html.ValidationMessageFor(m => m.SymbolB)
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.SymbolC)
+        @Html.DropDownListFor(m => m.SymbolC, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolC" })
+        @Html.ValidationMessageFor(m => m.SymbolC)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <button class="btn btn-secondary btn-sm pull-left with-margin" id="createPlot">Create plot</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <a id="nextbutton" href="#">Data change</a>
+        <div id="plot"></div>
+    </div>
+</div>
 
 <script charset="UTF-8" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.1.6/d3.min.js"></script>
 
 @section scripts {
 
     <script>
+
+        $(document).ready(function () {
+            $("#createPlot").click(function (e) {
+                var symbolA = $("#symbolA").children("option:selected").val();
+                var symbolB = $("#symbolB").children("option:selected").val();
+                var symbolC = $("#symbolC").children("option:selected").val();
+
+                var labelsDto = {
+                    LabelA: symbolA,
+                    LabelB: symbolB,
+                    LabelC: symbolC
+                };
+
+                console.log(labelsDto);
+
+                $.getJSON("/api/plotting/getPointsForTernaryPlot",
+                    labelsDto,
+                    function (points) {
+                    if (points.length == 0) {
+                        console.log('test1');
+                        return;
+                        }
+
+                        console.log(points);
+
+                    for (i = 0; i < points.length; i++) {
+                        var obj = points[i];
+                        console.log(obj.vertexAValue);
+                    }
+
+                });
+
+
+
+            });
+        });
 
         function ternaryPlot(selector, userOpt) {
 
@@ -241,7 +317,7 @@
             }
 
             plot.getPosition = coord;
-            
+
 
             return plot;
         }
@@ -278,13 +354,13 @@
             var d = []
             for (var i = 0; i < 3; i++) {
                 d.push({
-                    journalist: Math.random(),
+                    a: Math.random(),
                     developer: Math.random(),
                     designer: Math.random(),
                     label: 'point' + i
                 })
             }
-            tp.data(d, function (d) { return [d.journalist, d.developer, d.designer] }, 'label');
+            tp.data(d, function (d) { return [d.a, d.developer, d.designer] }, 'label');
         }
         next();
 

@@ -4,6 +4,7 @@ using ArchaeoAnalysisHub.Dtos;
 using ArchaeoAnalysisHub.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace ArchaeoAnalysisHub.Controllers.Api
@@ -80,12 +81,46 @@ namespace ArchaeoAnalysisHub.Controllers.Api
             {
                 dto.Add(new PlottingDto()
                 {
-                    AnalysisId = analysis.Id
+                    AnalysisId = analysis.Id,
                 });
             }
 
             return dto;
+        }
 
+        public IEnumerable<TernaryPlotDataPointDto> GetPointsForTernaryPlot([FromUri]TernaryPlotLabelsDto labelsDto)
+        {
+            var symbols = new List<string>()
+            {
+                labelsDto.LabelA,
+                labelsDto.LabelB,
+                labelsDto.LabelC
+            };
+
+            var normalisedAnalyses = analysesService.GetNormalisedAnalysesForSelectedSymbols(symbols, this.analysesBasket.Analyses);
+
+            var dto = new List<TernaryPlotDataPointDto>();
+            foreach (var analysis in normalisedAnalyses)
+            {
+                var plotDp = new TernaryPlotDataPointDto()
+                {
+                    Label = analysis.Id.ToString(),
+                    VertexAValue = analysis.AnalysisDataPoints
+                    .Where(dp => dp.Symbol == labelsDto.LabelA)
+                    .Select(dp => dp.ResultInPercentage)
+                    .FirstOrDefault(),
+                    VertexBValue = analysis.AnalysisDataPoints
+                    .Where(dp => dp.Symbol == labelsDto.LabelB)
+                    .Select(dp => dp.ResultInPercentage)
+                    .FirstOrDefault(),
+                    VertexCValue = analysis.AnalysisDataPoints
+                    .Where(dp => dp.Symbol == labelsDto.LabelC)
+                    .Select(dp => dp.ResultInPercentage)
+                    .FirstOrDefault(),
+                };
+                dto.Add(plotDp);
+            }
+            return dto;
         }
     }
 }

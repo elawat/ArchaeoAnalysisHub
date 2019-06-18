@@ -311,6 +311,8 @@
     <Compile Include="Data\Repository\SampleRepository.cs" />
     <Compile Include="Dtos\AnalysesToPlotDto.cs" />
     <Compile Include="Dtos\PlottingDto.cs" />
+    <Compile Include="Dtos\TernaryPlotDataPointDto.cs" />
+    <Compile Include="Dtos\TernaryPlotLabelsDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -464,6 +466,7 @@
     <Compile Include="ViewModels\AnalysisSummary.cs" />
     <Compile Include="ViewModels\ArtefactFormViewModel.cs" />
     <Compile Include="ViewModels\SampleFormViewModel.cs" />
+    <Compile Include="ViewModels\TernaryPlotViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

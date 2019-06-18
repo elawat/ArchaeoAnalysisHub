@@ -20,5 +20,6 @@ namespace ArchaeoAnalysisHub.Data.Repository.Interfaces
         void UpdateDataPoint(AnalysisDataPointFormViewModel updatedDataPoint);
         void DeleteDataPoint(int id);
         void CreateDataPoint(AnalysisDataPoint dataPoint);
+        List<Analysis> GetAnalyses(List<int> analysesIds);
     }
 }

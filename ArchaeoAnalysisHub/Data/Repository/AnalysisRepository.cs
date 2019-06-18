@@ -33,6 +33,22 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .ToList();
         }
 
+        public List<Analysis> GetAnalyses(List<int> analysesIds)
+        {
+            return context.Analyses
+                .Include(a => a.Sample)
+                .Include(a => a.Sample.SampleType)
+                .Include(a => a.Sample.Artefact)
+                .Include(a => a.Sample.Artefact.ArtefactType)
+                .Include(a => a.AnalysisType)
+                .Include(a => a.AnalysisDataPoints)
+                .Include(a => a.GeneralImage)
+                .Include(a => a.SpectrumImage)
+                .Include(a => a.Owner)
+                .Where(a => analysesIds.Contains(a.Id))
+                .ToList();
+        }
+
         public List<Analysis> GetAll()
         {
             return context.Analyses

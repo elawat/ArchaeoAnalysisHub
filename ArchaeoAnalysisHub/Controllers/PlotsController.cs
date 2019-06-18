@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ArchaeoAnalysisHub.Controllers.Api
+namespace ArchaeoAnalysisHub.Controllers
 {
     public class PlotsController : Controller
     {
@@ -32,7 +32,12 @@ namespace ArchaeoAnalysisHub.Controllers.Api
 
         public ActionResult TernaryPlot()
         {
-            return View("TernaryPlot");
+            var viewModel = new TernaryPlotViewModel()
+            {
+                Symbols = analysesService.GetSymbols(),
+                Heading = "Ternary plot"
+            };
+            return View("TernaryPlot", viewModel);
         }
     }
 }
