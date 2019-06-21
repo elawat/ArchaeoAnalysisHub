@@ -49,26 +49,26 @@
             <tbody>
                 @foreach (var analysis in Model.Analyses)
                 {
-                <tr>
+                    <tr>
 
-                    <td>
-                        @Html.ActionLink(analysis.Id.ToString(), "Details", "Analyses", new { id = analysis.Id }, new { @class = "link-details" })
-                    </td>
-                    <td>@analysis.AnalysisType.Name</td>
-                    @if (analysis.IsBulk)
-                    {
-                        <td>yes</td>
-                    }
-                    else  {
-                    <td>no</td>
-                    }
-                    <td>@analysis.Owner.Name</td>
-                </tr>
+                        <td>
+                            @Html.ActionLink(analysis.Id.ToString(), "Details", "Analyses", new { id = analysis.Id }, new { @class = "link-details" })
+                        </td>
+                        <td>@analysis.AnalysisType.Name</td>
+                        @if (analysis.IsBulk)
+                        {
+                            <td>yes</td>
+                        }
+                        else
+                        {
+                            <td>no</td>
+                        }
+                        <td>@analysis.Owner.Name</td>
+                    </tr>
                 }
             </tbody>
         </table>
     </div>
-
 </div>
 
 

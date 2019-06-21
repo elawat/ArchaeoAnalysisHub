@@ -26,6 +26,17 @@ namespace ArchaeoAnalysisHub
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/jqcloud.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-site-analyses").Include(
+                      "~/Scripts/site/modal-img.js",
+                      "~/Scripts/site/world-cloud.js",
+                      "~/Scripts/site/plotting.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-site-ternary-plot").Include(
+                      "~/Scripts/site/ternary-plot.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-site-analysis-form").Include(
+                     "~/Scripts/site/modal-img.js"));
         }
     }
 }

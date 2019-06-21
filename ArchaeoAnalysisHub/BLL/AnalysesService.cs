@@ -11,10 +11,12 @@ namespace ArchaeoAnalysisHub.BLL
     public class AnalysesService : IAnalysesService
     {
         private IAnalysisRepository repository;
+        private IAnalysesNormalizer normalizer;
 
-        public AnalysesService(IAnalysisRepository repository)
+        public AnalysesService(IAnalysisRepository repository, IAnalysesNormalizer normalizer)
         {
             this.repository = repository;
+            this.normalizer = normalizer;
         }
 
         public Analysis GetAnalysis(int id)
@@ -170,46 +172,10 @@ namespace ArchaeoAnalysisHub.BLL
             var results = new List<Analysis>();
             foreach (var analysis in analyses)
             {
-                results.Add(GetNormalisedDataPointsForSelectedSymbols(symbols, analysis));
+                results.Add(normalizer.GetNormalisedDataPointsForSelectedSymbols(symbols, analysis));
             }
 
             return results;
-        }
-
-        private Analysis GetNormalisedDataPointsForSelectedSymbols 
-            (List<string> symbols, Analysis analysis)
-        {
-            var dataPoints = analysis.AnalysisDataPoints
-                .Where(dp => symbols.Contains(dp.Symbol)).ToList();
-
-            var total = dataPoints.Sum(dp => dp.ResultInPercentage);
-
-            foreach (AnalysisDataPoint dp in dataPoints)
-            {
-                dp.ResultInPercentage = Math.Round(dp.ResultInPercentage / total * 100,2);
-            }
-
-            var normDataPoints = NormaliseTotal(dataPoints);
-
-            return new Analysis()
-            {
-                AnalysisDataPoints = normDataPoints,
-                Id = analysis.Id,
-            };
-        }
-        
-        private List<AnalysisDataPoint> NormaliseTotal(List<AnalysisDataPoint> dataPoints)
-        {
-            var total = dataPoints.Select(dp => dp.ResultInPercentage).Sum();
-
-            if (total != 100)
-            {
-                var diff = 100 - total;
-                var max = dataPoints.Select(dp => dp.ResultInPercentage).Max();
-                var dpMax = dataPoints.Where(dp => dp.ResultInPercentage == max).FirstOrDefault();
-                dpMax.ResultInPercentage = max - diff;
-            }
-            return dataPoints;
         }
     }
 }

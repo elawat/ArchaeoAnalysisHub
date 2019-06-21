@@ -286,8 +286,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BLL\AnalysesNormalizer.cs" />
     <Compile Include="BLL\AnalysesService.cs" />
     <Compile Include="BLL\AnalysisDataPointService.cs" />
+    <Compile Include="BLL\Interfaces\IAnalysesNormalizer.cs" />
     <Compile Include="BLL\Interfaces\IAnalysesService.cs" />
     <Compile Include="BLL\Interfaces\IAnalysisDataPointService.cs" />
     <Compile Include="BLL\Interfaces\IAnalysesBasket.cs" />
@@ -583,6 +585,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\jqcloud.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -594,6 +597,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\site\modal-img.js" />
+    <Content Include="Scripts\site\plotting.js" />
+    <Content Include="Scripts\site\ternary-plot.js" />
+    <Content Include="Scripts\site\world-cloud.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -634,6 +641,7 @@
     <Content Include="Views\Analyses\AnalysisForm.cshtml" />
     <Content Include="Views\AnalysisDataPoints\AnalysisDataPointForm.cshtml" />
     <Content Include="Views\Plots\TernaryPlot.cshtml" />
+    <Content Include="Views\Shared\_CreateTernaryPlotPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

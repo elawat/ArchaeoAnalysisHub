@@ -11,10 +11,13 @@ namespace ArchaeoAnalysisHub.ViewModels
         public IEnumerable<string> Symbols { get; set; }
         public string Heading { get; set; }
         [Display(Name = "Vertex A")]
+        [Required]
         public string SymbolA { get; set; }
         [Display(Name = "Vertex B")]
+        [Required]
         public string SymbolB { get; set; }
         [Display(Name = "Vertex C")]
+        [Required]
         public string SymbolC { get; set; }
     }
 }

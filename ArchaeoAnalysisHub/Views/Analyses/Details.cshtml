@@ -91,17 +91,28 @@
         @if (@Model.SpectrumImage != null)
         {
             <div>
-                <img src=@Model.SpectrumImage.Url class="img-details" />
+                <img src=@Model.SpectrumImage.Url class="img-details img-modal" />
             </div>
         }
         @if (@Model.GeneralImage != null)
         {
             <div>
-                <img src=@Model.GeneralImage.Url class="img-details" />
+                <img src=@Model.GeneralImage.Url class="img-details img-modal" />
             </div>
         }
     </div>
-
 </div>
+
+<!-- The Modal -->
+<div id="modalWindow" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01" />
+    <div id="caption"></div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/js-site-analysis-form")
+}
 
 

@@ -17,7 +17,7 @@ namespace ArchaeoAnalysisHub.Controllers.Api
 
         public PlottingController()
         {
-            this.analysesService = new AnalysesService(new AnalysisRepository(new Data.ApplicationDbContext()));
+            this.analysesService = new AnalysesService(new AnalysisRepository(new Data.ApplicationDbContext()), new AnalysesNormalizer());
             this.analysesBasket = new AnalysesBasket();
             if (System.Web.HttpContext.Current.Session[sessionVariable] == null)
             {
