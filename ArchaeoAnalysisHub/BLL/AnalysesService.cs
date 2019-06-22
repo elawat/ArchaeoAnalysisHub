@@ -2,6 +2,7 @@
 using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.Models;
 using ArchaeoAnalysisHub.ViewModels;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace ArchaeoAnalysisHub.BLL
                                                   select new AnalysisDataPoint
                                                   {
                                                       Symbol = dataPoint.Symbol,
-                                                      ResultInPercentage = Math.Round(dataPoint.ResultInPercentage,2)
+                                                      ResultInPercentage = Math.Round(dataPoint.ResultInPercentage, 2)
                                                   }
                                                   ).Take(5).ToList(),
                             Owner = analysis.Owner,
@@ -63,26 +64,8 @@ namespace ArchaeoAnalysisHub.BLL
         public AnalysisFormViewModel GetAnalysisDetailedView(int id)
         {
             var analysis = repository.GetAll().Where(a => a.Id == id).FirstOrDefault();
-            return new AnalysisFormViewModel()
-            {
-                Id = analysis.Id,
-                SampleId = analysis.SampleId,
-                Sample = analysis.Sample,
-                AnalysisTypeId = analysis.AnalysisTypeId,
-                AnalysisType = analysis.AnalysisType,
-                IsBulk = analysis.IsBulk,
-                IsNormalised = analysis.IsNormalised,
-                OwnerId = analysis.OwnerId,
-                Owner = analysis.Owner,
-                IsPublic = analysis.IsPublic,
-                GeneralImageId = analysis.GeneralImageId,
-                GeneralImage = analysis.GeneralImage,
-                SpectrumImage = analysis.SpectrumImage,
-                SpectrumImageId = analysis.SpectrumImageId,
-                SpectrumNo = analysis.SpectrumNo,
-                AnalysisDataPoints = analysis.AnalysisDataPoints,
-                AddedDate = analysis.AddedDate
-            };
+
+            return Mapper.Map<AnalysisFormViewModel>(analysis);
         }
 
         public AnalysisFormViewModel GetAnalysisEmptyView(string userId)
@@ -127,28 +110,19 @@ namespace ArchaeoAnalysisHub.BLL
             repository.Create(analysis);
         }
 
-        public AnalysisFormViewModel GetAnalysisDeteiledViewForEdit(int id, string userId)
+        public AnalysisFormViewModel GetAnalysisDetailedViewForEdit(int id, string userId)
         {
             var analysis = repository.GetAnalysis(id);
 
-            return new AnalysisFormViewModel()
-            {
-                Heading = "Edit an analysis",
-                Samples = repository.GetSamplesForUser(userId),
-                Artefacts = repository.GetArtefactsForUser(userId),
-                AnalysisTypes = repository.GetAnalysisTypes(),
-                Symbols = repository.GetSymbols(),
-                Id = id,
-                SampleId = analysis.SampleId,
-                Sample = analysis.Sample,
-                AnalysisTypeId = analysis.AnalysisTypeId,
-                AnalysisType = analysis.AnalysisType,
-                IsBulk = analysis.IsBulk,
-                IsNormalised = analysis.IsNormalised,
-                AnalysisDataPoints = analysis.AnalysisDataPoints,
-                IsPublic = analysis.IsPublic,
-                SpectrumNo = analysis.SpectrumNo
-            };
+            var viewModel = Mapper.Map<AnalysisFormViewModel>(analysis);
+            viewModel.Heading = "Edit an analysis";
+            viewModel.Samples = repository.GetSamplesForUser(userId);
+            viewModel.Artefacts = repository.GetArtefactsForUser(userId);
+            viewModel.AnalysisTypes = repository.GetAnalysisTypes();
+            viewModel.Symbols = repository.GetSymbols();
+
+            return viewModel;
+
         }
 
         public void UpdateAnalysis(AnalysisFormViewModel viewModel)

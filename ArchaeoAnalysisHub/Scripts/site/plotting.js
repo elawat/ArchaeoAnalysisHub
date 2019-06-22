@@ -17,7 +17,6 @@
 
 $(document).ready(function () {
     $(".js-toggle-plotting").click(function (e) {
-        console.log('test')
         var button = $(e.target);
         if (button.text() == 'Plot?') {
             $.post("/api/plotting/plot", { AnalysisId: button.attr("data-analysis-id") })

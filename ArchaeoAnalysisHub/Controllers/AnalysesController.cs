@@ -57,7 +57,7 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var viewModel = analysesService.GetAnalysisDeteiledViewForEdit(id, userId);
+            var viewModel = analysesService.GetAnalysisDetailedViewForEdit(id, userId);
 
             return View("AnalysisForm", viewModel);
         }

@@ -13,7 +13,7 @@ namespace ArchaeoAnalysisHub.BLL.Interfaces
         AnalysisFormViewModel GetAnalysisEmptyView(string userId);
         AnalysisFormViewModel RepopulateListsForAnalysisEmptyView(string userId, AnalysisFormViewModel viewModel);
         void CreateAnalysis(AnalysisFormViewModel viewModel, string userId);
-        AnalysisFormViewModel GetAnalysisDeteiledViewForEdit(int id, string userId);
+        AnalysisFormViewModel GetAnalysisDetailedViewForEdit(int id, string userId);
         void UpdateAnalysis(AnalysisFormViewModel viewModel);
         void DeleteAnalysis(int id);
         IEnumerable<string> GetSymbols();

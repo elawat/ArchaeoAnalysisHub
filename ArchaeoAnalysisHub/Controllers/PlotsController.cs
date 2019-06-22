@@ -34,34 +34,28 @@ namespace ArchaeoAnalysisHub.Controllers
         public ActionResult TernaryPlot(TernaryPlotViewModel plot)
         {
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !plot.IsValid())
             {
                 if (plot.Heading is null)
                 {
-                    var ternaryPlot = new TernaryPlotViewModel()
-                    {
-                        Symbols = analysesService.GetSymbols(),
-                    };
+
+                    plot.Symbols = analysesService.GetSymbols();
                     var analyses = analysesService.GetSummary();
                     var vModel = new AnalysesViewModel()
                     {
                         Analyses = analyses,
                         Heading = "Select analyses",
                         IsInSelectMode = true,
-                        TernaryPlot = ternaryPlot
+                        TernaryPlot = plot
                     };
                     return View("Analyses", vModel);
                 }
             }
-            var viewModel = new TernaryPlotViewModel()
-            {
-                Symbols = analysesService.GetSymbols(),
-                SymbolA = plot.SymbolA,
-                SymbolB = plot.SymbolB,
-                SymbolC = plot.SymbolC,
-                Heading = "Ternary plot"
-            };
-            return View("TernaryPlot", viewModel);
+
+            plot.Symbols = analysesService.GetSymbols();
+            plot.Heading = "Ternary plot";
+
+            return View("TernaryPlot", plot);
         }
     }
 }

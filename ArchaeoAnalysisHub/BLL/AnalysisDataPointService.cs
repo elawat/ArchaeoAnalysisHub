@@ -2,6 +2,7 @@
 using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.Models;
 using ArchaeoAnalysisHub.ViewModels;
+using AutoMapper;
 
 namespace ArchaeoAnalysisHub.BLL
 {
@@ -17,14 +18,9 @@ namespace ArchaeoAnalysisHub.BLL
         public AnalysisDataPointFormViewModel GetDataPoint(int id)
         {
             var dataPoint = repository.GetDataPoint(id);
-            return new AnalysisDataPointFormViewModel()
-            {
-                Id = id,
-                AnalysisId =dataPoint.AnalysisId,
-                Symbol = dataPoint.Symbol,
-                ResultInPercentage = dataPoint.ResultInPercentage,
-                Symbols = repository.GetSymbols()
-            };
+            var viewModel = Mapper.Map<AnalysisDataPointFormViewModel>(dataPoint);
+            viewModel.Symbols = repository.GetSymbols();
+            return viewModel;
         }
 
         public void UpdateAnalysisDataPoint(AnalysisDataPointFormViewModel viewModel)

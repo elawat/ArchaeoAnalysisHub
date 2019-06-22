@@ -27,9 +27,18 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-9">
+                @if (!Model.SymbolsSelectionIsValid)
+                {
+                    <p class="alert alert-danger with-margin">Select three different symbols.</p>
+                }
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-3">
                 <button type="submit" class="btn btn-primary with-double-margin">Create ternary plot</button>
             </div>
         </div>
     }
 </div>
+

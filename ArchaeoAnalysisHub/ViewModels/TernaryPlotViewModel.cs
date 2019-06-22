@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace ArchaeoAnalysisHub.ViewModels
 {
@@ -19,5 +16,24 @@ namespace ArchaeoAnalysisHub.ViewModels
         [Display(Name = "Vertex C")]
         [Required]
         public string SymbolC { get; set; }
+        public bool SymbolsSelectionIsValid { get; private set; }
+
+        public TernaryPlotViewModel()
+        {
+            SymbolsSelectionIsValid = true;
+        }
+        public bool IsValid()
+        {
+            if (SymbolA == SymbolB || SymbolA == SymbolC || SymbolB == SymbolC)
+            {
+                SymbolsSelectionIsValid = false;
+                return false;
+            }
+            else
+            {
+                SymbolsSelectionIsValid = true;
+                return true;
+            }
+        }
     }
 }
