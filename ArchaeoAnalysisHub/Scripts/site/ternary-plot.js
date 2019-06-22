@@ -40,17 +40,20 @@
                     vertexAValue: obj.vertexAValue,
                     vertexBValue: obj.vertexBValue,
                     vertexCValue: obj.vertexCValue,
-                    label: obj.label
+                    label: obj.label,
+                    colour: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
                 })
             }
-            tp.data(d, function (d) { return [d.vertexAValue, d.vertexBValue, d.vertexCValue] }, 'label');
+            tp.data(d, function (d) { return [d.vertexAValue, d.vertexBValue, d.vertexCValue, d.label, d.colour] });
 
             // Update list of analysis
-            var list = $('#analyses-list')
-            for (i = 0; i < points.length; i++) {
-                list.append("<p>Analysis id: " + points[i].label + "</p>")
-            }
-
+            d3.select('#analyses-list')
+                .selectAll('li')
+                .data(d)
+                .enter()
+                .append('li')
+                .text(function (d) { return d.label; })
+                .style('color', function (d) { return d.colour; });
         });
 });
 
@@ -63,7 +66,7 @@ function ternaryPlot(selector, userOpt) {
 
     var opt = {
         width: 100,
-        height: 900,
+        height: 500,
         side: 700,
         margin: { top: 50, left: 50, bottom: 50, right: 50 },
         axis_labels: ['A', 'B', 'C'],
@@ -213,12 +216,10 @@ function ternaryPlot(selector, userOpt) {
             c /= sum;
             pos[0] = corners[0][0] * a + corners[1][0] * b + corners[2][0] * c;
             pos[1] = corners[0][1] * a + corners[1][1] * b + corners[2][1] * c;
+            pos[2] = arr[3]; // label;
+            pos[3] = arr[4]; // colour
         }
         return pos;
-    }
-
-    function scale(p, factor) {
-        return [p[0] * factor, p[1] * factor];
     }
 
     plot.data = function (data, accessor, bindBy) { //bind by is the dataset property used as an id for the join
@@ -232,16 +233,21 @@ function ternaryPlot(selector, userOpt) {
                 return i;
             });
 
-        circles.enter().append("circle");
+        circles.enter()
+            .append("circle");
 
-        var ci = document.getElementsByTagName('circle');
-        for (i = 0; i < ci.length; i++) {
-            ci[i].setAttribute("id", "id" + i);
-        }
-
-        circles.transition().attr("cx", function (d) { return d[0]; })
+        circles.transition()
+            .attr("cx", function (d) { return d[0]; })
             .attr("cy", function (d) { return d[1]; })
             .attr("r", 6);
+
+        circles
+            .attr("title", function (d) { return d[2]; })
+            .attr("id", function (d) { return d[2]; })
+            .style("fill", function (d) { return d[3]; })
+            .style("stroke", function (d) { return d[3]; });
+
+        circles.append("title").text(function (d) { return 'Analysis id: ' + d[2]; });
 
         return this;
     }

@@ -3,8 +3,6 @@
         if (analyses.length == 0) {
             return;
         }
-        console.log(analyses.length);
-        console.log(analyses);
         analyses.forEach(function (element) {
             var button = $("[data-analysis-id=" + element.analysisId + "]");
             button
