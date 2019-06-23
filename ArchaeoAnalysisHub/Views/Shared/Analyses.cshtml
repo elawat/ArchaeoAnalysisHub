@@ -1,15 +1,14 @@
 ﻿@model ArchaeoAnalysisHub.ViewModels.AnalysesViewModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = Model.Heading;
+    ViewBag.Title = Model.Heading;
 }
-
 
 <div class="row">
     <div class="container col-sm-9">
         <div class="col-sm-5">
-            <h3>@Model.Heading</h3>
+            <h3 class="headline">@Model.Heading</h3>
         </div>
     </div>
 
@@ -18,6 +17,18 @@
 @if (Model.IsInSelectMode)
 {
     @Html.Partial("_CreateTernaryPlotPartial", Model.TernaryPlot)
+}
+
+@using (Html.BeginForm("Search", "Analyses"))
+{
+    <div class="form-group">
+        <div id="searchGigs" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search by artefact, type ..." })
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
 }
 
 <div class="row">

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Heading</h2>
+<h2 class="headline">@Model.Heading</h2>
 <div class="row">
     <div class="col-md-5">
         @using (Html.BeginForm(Model.Action, "Analyses"))

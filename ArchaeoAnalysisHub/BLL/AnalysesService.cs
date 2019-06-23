@@ -25,9 +25,9 @@ namespace ArchaeoAnalysisHub.BLL
             return repository.GetAnalysis(id);
         }
 
-        public List<AnalysisSummary> GetSummary()
+        public List<AnalysisSummary> GetSummary(string query = null)
         {
-            var query = from analysis in repository.GetAllForHomeView()
+            var results = from analysis in repository.GetAllForHomeView(query)
                         select new AnalysisSummary()
                         {
                             Id = analysis.Id,
@@ -48,7 +48,7 @@ namespace ArchaeoAnalysisHub.BLL
                             IsPublic = analysis.IsPublic,
                             GeneralImage = analysis.GeneralImage
                         };
-            return query.ToList();
+            return results.ToList();
         }
 
         public List<Analysis> GetAll()

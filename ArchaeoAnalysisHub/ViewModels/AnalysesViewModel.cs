@@ -8,5 +8,6 @@ namespace ArchaeoAnalysisHub.ViewModels
         public string Heading { get; set; }
         public bool IsInSelectMode { get; set; }
         public TernaryPlotViewModel TernaryPlot { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

@@ -148,7 +148,16 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .section {
     margin-top: 15px;
+    margin-bottom: 50px;
+}
+
+.headline {
+    margin-top: 30px;
     margin-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 30px;
 }
 
 /* The Modal (image) */
@@ -166,7 +175,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 3; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -250,3 +259,9 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     width: 100%;
     }
 }
+
+#searchGigs {
+    width: 300px;
+}
+
+

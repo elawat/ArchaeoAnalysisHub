@@ -1,6 +1,4 @@
-﻿using ArchaeoAnalysisHub.BLL;
-using ArchaeoAnalysisHub.BLL.Interfaces;
-using ArchaeoAnalysisHub.Data.Repository.Interfaces;
+﻿using ArchaeoAnalysisHub.BLL.Interfaces;
 using ArchaeoAnalysisHub.ViewModels;
 using System.Web.Mvc;
 
@@ -15,9 +13,9 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             this.analysesService = analysesHandler;
         }
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
-            var analyses = analysesService.GetSummary();
+            var analyses = analysesService.GetSummary(query);
             var viewModel = new AnalysesViewModel()
             {
                 Analyses = analyses,

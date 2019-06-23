@@ -1,6 +1,7 @@
 ﻿using ArchaeoAnalysisHub.Data.Repository.Interfaces;
 using ArchaeoAnalysisHub.Models;
 using ArchaeoAnalysisHub.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace ArchaeoAnalysisHub.Data.Repository
             this.context = new ApplicationDbContext();
         }
 
-        public List<Analysis> GetAllForHomeView()
+        public List<Analysis> GetAllForHomeView(string query = null)
         {
-            return context.Analyses
+            var results = context.Analyses
                 .Include(a => a.Sample)
                 .Include(a => a.Sample.SampleType)
                 .Include(a => a.Sample.Artefact)
@@ -31,6 +32,24 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Where(a => a.Sample.Artefact.Name == "PB-24a")
                 .Take(10)
                 .ToList();
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                results = results
+                    .Where(a =>
+                    Convert.ToString(a.Id).Equals(query) ||
+                    a.Owner.Name.Contains(query) ||
+                    a.AnalysisType.Name.Contains(query) ||
+                    a.Sample.SampleType.Name.Contains(query) ||
+                    a.Sample.Artefact.Name.Contains(query) ||
+                    a.Sample.Artefact.Site.Contains(query) ||
+                    a.Sample.Artefact.Country.Contains(query) ||
+                    a.Sample.Artefact.Name.Contains(query) ||
+                    a.Sample.Artefact.Description.Contains(query))
+                    .ToList();
+            }
+
+            return results;
         }
 
         public List<Analysis> GetAnalyses(List<int> analysesIds)

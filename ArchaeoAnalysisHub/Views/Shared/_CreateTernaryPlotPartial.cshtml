@@ -3,40 +3,38 @@
 <div class="row section">
     @using (Html.BeginForm("TernaryPlot", "Plots"))
     {
-        <div class="row">
-            @Html.AntiForgeryToken()
-            @if (Model.Heading == "Ternary plot")
-            {
-                @Html.HiddenFor(m => m.Heading, new { Value = "Plot" })
-            }
+    <div class="row">
+        @Html.AntiForgeryToken()
+        @if (Model.Heading == "Ternary plot")
+        {
+            @Html.HiddenFor(m => m.Heading, new { Value = "Plot" })
+        }
 
-            <div class="col-md-3">
-                @Html.LabelFor(m => m.SymbolA)
-                @Html.DropDownListFor(m => m.SymbolA, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolA" })
-                @Html.ValidationMessageFor(m => m.SymbolA)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(m => m.SymbolB)
-                @Html.DropDownListFor(m => m.SymbolB, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolB" })
-                @Html.ValidationMessageFor(m => m.SymbolB)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(m => m.SymbolC)
-                @Html.DropDownListFor(m => m.SymbolC, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolC" })
-                @Html.ValidationMessageFor(m => m.SymbolC)
-            </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.SymbolA)
+            @Html.DropDownListFor(m => m.SymbolA, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolA" })
+            @Html.ValidationMessageFor(m => m.SymbolA)
         </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.SymbolB)
+            @Html.DropDownListFor(m => m.SymbolB, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolB" })
+            @Html.ValidationMessageFor(m => m.SymbolB)
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.SymbolC)
+            @Html.DropDownListFor(m => m.SymbolC, new SelectList(Model.Symbols), "", new { @class = "form-control", @id = "symbolC" })
+            @Html.ValidationMessageFor(m => m.SymbolC)
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-info btn-lg with-double-margin">Create ternary plot</button>
+        </div>
+    </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-6">
                 @if (!Model.SymbolsSelectionIsValid)
                 {
                     <p class="alert alert-danger with-margin">Select three different symbols.</p>
                 }
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-primary with-double-margin">Create ternary plot</button>
             </div>
         </div>
     }

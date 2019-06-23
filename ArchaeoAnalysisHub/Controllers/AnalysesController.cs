@@ -85,5 +85,11 @@ namespace ArchaeoAnalysisHub.Controllers
             analysesService.DeleteAnalysis(id);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public ActionResult Search(AnalysesViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+        }
     }
 }

@@ -27,16 +27,21 @@ namespace ArchaeoAnalysisHub.BLL
                  );
             }
 
-            var total = dataPoints.Sum(dp => dp.ResultInPercentage);
-
-            foreach (var dp in dataPoints)
+            if (dataPoints.Count != 0)
             {
-                dp.ResultInPercentage = Math.Round(dp.ResultInPercentage / total * 100, 2);
-            }
+                var total = dataPoints.Sum(dp => dp.ResultInPercentage);
 
+                foreach (var dp in dataPoints)
+                {
+                    dp.ResultInPercentage = Math.Round(dp.ResultInPercentage / total * 100, 2);
+                }
+
+                dataPoints = NormaliseTotal(dataPoints);
+            }
+            
             return new Analysis()
             {
-                AnalysisDataPoints = NormaliseTotal(dataPoints),
+                AnalysisDataPoints = dataPoints,
                 Id = analysis.Id,
             };
         }
