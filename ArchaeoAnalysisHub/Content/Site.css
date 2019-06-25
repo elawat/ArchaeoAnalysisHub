@@ -142,8 +142,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 }
 
 .with-double-margin {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .section {

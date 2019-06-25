@@ -16,20 +16,24 @@ namespace ArchaeoAnalysisHub.ViewModels
         public Sample Sample { get; set; }
         [Required]
         public int AnalysisTypeId { get; set; }
+        [Display(Name = "Analysis type")]
         public AnalysisType AnalysisType { get; set; }
         [Display(Name = "Bulk")]
         [Required]
         public bool IsBulk { get; set; }
         [Required]
+        [Display(Name = "Normalised")]
         public bool IsNormalised { get; set; }
         public ICollection<AnalysisDataPoint> AnalysisDataPoints { get; set; }
         public ApplicationUser Owner { get; set; }
         public string OwnerId { get; set; }
+        [Display(Name = "Public")]
         public bool IsPublic { get; set; }
         public int? GeneralImageId { get; set; }
         public Image GeneralImage { get; set; }
         public int? SpectrumImageId { get; set; }
         public Image SpectrumImage { get; set; }
+        [Display(Name ="Spectrum number")]
         public string SpectrumNo { get; set; }
         public string Heading { get; set; }
         public ICollection<Sample> Samples { get; set; }
