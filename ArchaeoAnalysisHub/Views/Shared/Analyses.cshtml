@@ -40,7 +40,10 @@
             <div class="row">
                 <div class="col-sm-2 list-img-col">
                     <div class="wordcloud" id="@analysis.Id"></div>
-                    <img src=@analysis.GeneralImage.Url alt=@analysis.GeneralImage.Name class="img-modal">
+                    @if (analysis.GeneralImage != null)
+                    {
+                        <img src=@analysis.GeneralImage.Url alt=@analysis.GeneralImage.Name class="img-modal">
+                    }
                 </div>
                 <div class="col-sm-5">
                     <h4 class="card-title">

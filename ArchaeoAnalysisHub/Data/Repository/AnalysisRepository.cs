@@ -29,8 +29,6 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Include(a => a.GeneralImage)
                 .Include(a => a.SpectrumImage)
                 .Include(a => a.Owner)
-                .Where(a => a.Sample.Artefact.Name == "PB-24a")
-                .Take(10)
                 .ToList();
 
             if (!String.IsNullOrWhiteSpace(query))
@@ -49,7 +47,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                     .ToList();
             }
 
-            return results;
+            return results.Take(20).ToList();
         }
 
         public List<Analysis> GetAnalyses(List<int> analysesIds)

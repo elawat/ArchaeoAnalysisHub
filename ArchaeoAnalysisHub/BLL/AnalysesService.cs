@@ -25,7 +25,7 @@ namespace ArchaeoAnalysisHub.BLL
             return repository.GetAnalysis(id);
         }
 
-        public List<AnalysisSummary> GetSummary(string query = null)
+        public List<AnalysisSummary> GetSummary(string query = null, string userId = null)
         {
             var results = from analysis in repository.GetAllForHomeView(query)
                         select new AnalysisSummary()
@@ -48,6 +48,7 @@ namespace ArchaeoAnalysisHub.BLL
                             IsPublic = analysis.IsPublic,
                             GeneralImage = analysis.GeneralImage
                         };
+            results = results.Where(a => a.IsPublic == true || a.Owner.Id == userId);
             return results.ToList();
         }
 
@@ -61,11 +62,18 @@ namespace ArchaeoAnalysisHub.BLL
             return repository.GetAllForHomeView();
         }
 
-        public AnalysisFormViewModel GetAnalysisDetailedView(int id)
+        public AnalysisFormViewModel GetAnalysisDetailedView(int id, string userId = null)
         {
             var analysis = repository.GetAll().Where(a => a.Id == id).FirstOrDefault();
 
-            return Mapper.Map<AnalysisFormViewModel>(analysis);
+            var viewModel = Mapper.Map<AnalysisFormViewModel>(analysis);
+
+            if (analysis.OwnerId == userId)
+            {
+                viewModel.ShowActionButtons = true;
+            }
+
+            return viewModel;
         }
 
         public AnalysisFormViewModel GetAnalysisEmptyView(string userId)

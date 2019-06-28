@@ -16,12 +16,14 @@ namespace ArchaeoAnalysisHub.Controllers
 
         public ActionResult Index()
         {
-            return View(analysesService.GetAll());
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Details(int id)
         {
-            return View(analysesService.GetAnalysisDetailedView(id));
+            var userId = User.Identity.GetUserId();
+
+            return View(analysesService.GetAnalysisDetailedView(id, userId));
         }
 
         [Authorize]

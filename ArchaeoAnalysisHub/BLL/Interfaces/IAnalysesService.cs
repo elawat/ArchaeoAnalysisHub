@@ -7,9 +7,9 @@ namespace ArchaeoAnalysisHub.BLL.Interfaces
     public interface IAnalysesService
     {
         Analysis GetAnalysis(int id);
-        List<AnalysisSummary> GetSummary(string query = null);
+        List<AnalysisSummary> GetSummary(string query = null, string userId = null);
         List<Analysis> GetAll();
-        AnalysisFormViewModel GetAnalysisDetailedView(int id);
+        AnalysisFormViewModel GetAnalysisDetailedView(int id, string userId = null);
         AnalysisFormViewModel GetAnalysisEmptyView(string userId);
         AnalysisFormViewModel RepopulateListsForAnalysisEmptyView(string userId, AnalysisFormViewModel viewModel);
         void CreateAnalysis(AnalysisFormViewModel viewModel, string userId);

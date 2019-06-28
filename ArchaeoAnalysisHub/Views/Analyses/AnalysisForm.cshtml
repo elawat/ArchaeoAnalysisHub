@@ -68,7 +68,10 @@
                 }
             </tbody>
         </table>
+        @if (Model.Id != 0)
+        {
         <button class="btn btn-secondary" onclick="location.href='@Url.Action("Create","AnalysisDataPoints", new { analysisId = Model.Id })'">Add a new data point</button>
+        }
     </div>
 </div>
 

@@ -42,6 +42,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public ICollection<string> Symbols { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime AddedDate { get; set; }
+        public bool ShowActionButtons { get; set; }
 
         public string Action
         {
