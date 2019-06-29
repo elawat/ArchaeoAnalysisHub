@@ -8,21 +8,23 @@ namespace ArchaeoAnalysisHub.Controllers
 {
     public class HomeController : Controller
     {
-        private IAnalysesService analysesService;
+        private IAnalysesService _analysesService;
+        private IAnalysesLoader _analysesLoader;
 
-        public HomeController(IAnalysesService analysesHandler)
+        public HomeController(IAnalysesService analysesHandler, IAnalysesLoader analysesLoader)
         {
-            this.analysesService = analysesHandler;
+            _analysesService = analysesHandler;
+            _analysesLoader = analysesLoader;
         }
         public ActionResult Index(string query = null)
         {
             var userId = User.Identity.GetUserId();
-            var analyses = analysesService.GetSummary(query, userId);
+            var analyses = _analysesService.GetSummary(query, userId, _analysesLoader.IncrementCount);
             var viewModel = new AnalysesViewModel()
             {
+                SearchTerm = query,
                 Analyses = analyses,
-                Heading = "Analyses",
-                IsInSelectMode = false
+                Heading = "Analyses"
             };
 
             return View("Analyses", viewModel);

@@ -25,9 +25,10 @@ namespace ArchaeoAnalysisHub.BLL
             return repository.GetAnalysis(id);
         }
 
-        public List<AnalysisSummary> GetSummary(string query = null, string userId = null)
+        public List<AnalysisSummary> GetSummary(string query = null, string userId = null, 
+            int loadMultiplier = 1)
         {
-            var results = from analysis in repository.GetAllForHomeView(query)
+            var results = from analysis in repository.GetAllForHomeView(query, loadMultiplier)
                         select new AnalysisSummary()
                         {
                             Id = analysis.Id,

@@ -1,27 +1,32 @@
 ﻿using ArchaeoAnalysisHub.BLL.Interfaces;
 using ArchaeoAnalysisHub.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
 namespace ArchaeoAnalysisHub.Controllers
 {
     public class PlotsController : Controller
     {
-        private IAnalysesService analysesService;
+        private IAnalysesService _analysesService;
+        private IAnalysesLoader _analysesLoader;
 
-        public PlotsController(IAnalysesService analysesHandler)
+        public PlotsController(IAnalysesService analysesHandler, IAnalysesLoader analysesLoader)
         {
-            this.analysesService = analysesHandler;
+            _analysesService = analysesHandler;
+            _analysesLoader = analysesLoader;
         }
 
-        public ActionResult SelectAnalyses()
+        public ActionResult SelectAnalyses(string query = null)
         {
-            var analyses = analysesService.GetSummary();
+            var userId = User.Identity.GetUserId();
+            var analyses = _analysesService.GetSummary(query, userId, _analysesLoader.IncrementCount);
             var ternaryPlot = new TernaryPlotViewModel()
             {
-                Symbols = analysesService.GetSymbols(),
+                Symbols = _analysesService.GetSymbols(),
             };
             var viewModel = new AnalysesViewModel()
             {
+                SearchTerm = query,
                 Analyses = analyses,
                 Heading = "Select analyses",
                 IsInSelectMode = true,
@@ -39,8 +44,8 @@ namespace ArchaeoAnalysisHub.Controllers
                 if (plot.Heading is null)
                 {
 
-                    plot.Symbols = analysesService.GetSymbols();
-                    var analyses = analysesService.GetSummary();
+                    plot.Symbols = _analysesService.GetSymbols();
+                    var analyses = _analysesService.GetSummary();
                     var vModel = new AnalysesViewModel()
                     {
                         Analyses = analyses,
@@ -52,7 +57,7 @@ namespace ArchaeoAnalysisHub.Controllers
                 }
             }
 
-            plot.Symbols = analysesService.GetSymbols();
+            plot.Symbols = _analysesService.GetSymbols();
             plot.Heading = "Ternary plot";
 
             return View("TernaryPlot", plot);

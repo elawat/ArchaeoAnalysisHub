@@ -29,6 +29,7 @@ namespace ArchaeoAnalysisHub
             container.RegisterType<IAnalysisDataPointService, AnalysisDataPointService>();
             container.RegisterType<IAnalysesBasket, AnalysesBasket>();
             container.RegisterType<IAnalysesNormalizer, AnalysesNormalizer>();
+            container.RegisterType<IAnalysesLoader, AnalysesLoader>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

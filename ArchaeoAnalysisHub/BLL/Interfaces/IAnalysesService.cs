@@ -7,7 +7,7 @@ namespace ArchaeoAnalysisHub.BLL.Interfaces
     public interface IAnalysesService
     {
         Analysis GetAnalysis(int id);
-        List<AnalysisSummary> GetSummary(string query = null, string userId = null);
+        List<AnalysisSummary> GetSummary(string query = null, string userId = null, int loadMultiplier = 1);
         List<Analysis> GetAll();
         AnalysisFormViewModel GetAnalysisDetailedView(int id, string userId = null);
         AnalysisFormViewModel GetAnalysisEmptyView(string userId);

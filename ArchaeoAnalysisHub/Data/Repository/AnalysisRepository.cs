@@ -17,7 +17,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
             this.context = new ApplicationDbContext();
         }
 
-        public List<Analysis> GetAllForHomeView(string query = null)
+        public List<Analysis> GetAllForHomeView(string query = null, int loadMultiplier = 1)
         {
             var results = context.Analyses
                 .Include(a => a.Sample)
@@ -35,19 +35,19 @@ namespace ArchaeoAnalysisHub.Data.Repository
             {
                 results = results
                     .Where(a =>
-                    Convert.ToString(a.Id).Equals(query) ||
-                    a.Owner.Name.Contains(query) ||
-                    a.AnalysisType.Name.Contains(query) ||
-                    a.Sample.SampleType.Name.Contains(query) ||
-                    a.Sample.Artefact.Name.Contains(query) ||
-                    a.Sample.Artefact.Site.Contains(query) ||
-                    a.Sample.Artefact.Country.Contains(query) ||
-                    a.Sample.Artefact.Name.Contains(query) ||
-                    a.Sample.Artefact.Description.Contains(query))
+                    Convert.ToString(a.Id).ToLower().Equals(query.ToLower()) ||
+                    a.Owner.Name.ToLower().Contains(query.ToLower()) ||
+                    a.AnalysisType.Name.ToLower().Equals(query.ToLower()) ||
+                    a.Sample.SampleType.Name.ToLower().Contains(query.ToLower()) ||
+                    a.Sample.Artefact.Name.ToLower().Contains(query.ToLower()) ||
+                    a.Sample.Artefact.Site.ToLower().Contains(query.ToLower()) ||
+                    a.Sample.Artefact.Country.ToLower().Contains(query.ToLower()) ||
+                    a.Sample.Artefact.Name.ToLower().Contains(query.ToLower()) ||
+                    a.Sample.Artefact.Description.ToLower().Contains(query.ToLower()))
                     .ToList();
             }
 
-            return results.Take(20).ToList();
+            return results.Take(20 * loadMultiplier).ToList();
         }
 
         public List<Analysis> GetAnalyses(List<int> analysesIds)

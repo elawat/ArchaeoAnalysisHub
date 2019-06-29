@@ -33,27 +33,60 @@
 
             var tp = ternaryPlot('#plot', plot_opts);
 
+            var nodata =[]
             var d = []
+            console.log(points.length);
             for (var i = 0; i < points.length; i++) {
                 var obj = points[i];
-                d.push({
-                    vertexAValue: obj.vertexAValue,
-                    vertexBValue: obj.vertexBValue,
-                    vertexCValue: obj.vertexCValue,
-                    label: obj.label,
-                    colour: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
-                })
+                console.log('inside');
+                console.log('sum: ' + obj.vertexAValue + obj.vertexBValue + obj.vertexCValue);
+                if (obj.vertexAValue + obj.vertexBValue + obj.vertexCValue != 0) {
+                    d.push({
+                        vertexAValue: obj.vertexAValue,
+                        vertexBValue: obj.vertexBValue,
+                        vertexCValue: obj.vertexCValue,
+                        label: obj.label,
+                        colour: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
+                    })
+                }
+                else {
+                    nodata.push(obj.label);
+                    console.log('inside nodata');
+                }
+               
             }
             tp.data(d, function (d) { return [d.vertexAValue, d.vertexBValue, d.vertexCValue, d.label, d.colour] });
 
             // Update list of analysis
-            d3.select('#analyses-list')
-                .selectAll('li')
-                .data(d)
-                .enter()
-                .append('li')
-                .text(function (d) { return d.label; })
-                .style('color', function (d) { return d.colour; });
+            if (d.length > 0) {
+                d3.select('#analyses-list')
+                    .style('visibility', 'visible')
+                    .selectAll('li')
+                    .data(d)
+                    .enter()
+                    .append('li')
+                    .text(function (d) { return d.label; })
+                    .style('color', function (d) { return d.colour; });
+            }
+            else {
+                d3.select('#analyses-list')
+                    .style('visibility', 'hidden')
+            }
+            
+            if (nodata.length > 0) {
+                console.log(nodata[0]);
+                d3.select('#nodata-list')
+                    .style('visibility', 'visible')
+                    .selectAll('li')
+                    .data(nodata)
+                    .enter()
+                    .append('li')
+                    .text(function (d) { return nodata; });
+            }
+            else {
+                d3.select('#nodata-list')
+                    .style('visibility', 'hidden');
+            }
         });
 });
 

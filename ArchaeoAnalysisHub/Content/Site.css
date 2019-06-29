@@ -264,4 +264,17 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     width: 300px;
 }
 
+#analyses-list {
+    visibility: hidden;
+    font-size: smaller;
+}
+
+#nodata-list {
+    visibility: hidden;
+    font-size: smaller;
+}
+
+.loadmore-button {
+    min-width: 200px;
+}
 

@@ -7,11 +7,13 @@ namespace ArchaeoAnalysisHub.Controllers
 {
     public class AnalysesController : Controller
     {
-        private IAnalysesService analysesService;
+        private IAnalysesService _analysesService;
+        private IAnalysesLoader _analysesLoader;
 
-        public AnalysesController(IAnalysesService analysesService)
+        public AnalysesController(IAnalysesService analysesService, IAnalysesLoader analysesLoader)
         {
-            this.analysesService = analysesService;
+            _analysesService = analysesService;
+            _analysesLoader = analysesLoader;
         }
 
         public ActionResult Index()
@@ -23,7 +25,7 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            return View(analysesService.GetAnalysisDetailedView(id, userId));
+            return View(_analysesService.GetAnalysisDetailedView(id, userId));
         }
 
         [Authorize]
@@ -31,7 +33,7 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var viewModel = analysesService.GetAnalysisEmptyView(userId);
+            var viewModel = _analysesService.GetAnalysisEmptyView(userId);
 
             return View("AnalysisForm", viewModel);
         }
@@ -45,11 +47,11 @@ namespace ArchaeoAnalysisHub.Controllers
 
             if (!ModelState.IsValid)
             {
-                var repopulatedViewModel = analysesService.RepopulateListsForAnalysisEmptyView(userId, viewModel);
+                var repopulatedViewModel = _analysesService.RepopulateListsForAnalysisEmptyView(userId, viewModel);
                 return View("AnalysisForm", viewModel);
             }
 
-            analysesService.CreateAnalysis(viewModel, userId);
+            _analysesService.CreateAnalysis(viewModel, userId);
 
             return RedirectToAction("Index", "Home");
         }
@@ -59,7 +61,7 @@ namespace ArchaeoAnalysisHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var viewModel = analysesService.GetAnalysisDetailedViewForEdit(id, userId);
+            var viewModel = _analysesService.GetAnalysisDetailedViewForEdit(id, userId);
 
             return View("AnalysisForm", viewModel);
         }
@@ -71,11 +73,11 @@ namespace ArchaeoAnalysisHub.Controllers
 
             if (!ModelState.IsValid)
             {
-                var repopulatedViewModel = analysesService.RepopulateListsForAnalysisEmptyView(userId, viewModel);
+                var repopulatedViewModel = _analysesService.RepopulateListsForAnalysisEmptyView(userId, viewModel);
                 return View("AnalysisForm", viewModel);
             }
 
-            analysesService.UpdateAnalysis(viewModel);
+            _analysesService.UpdateAnalysis(viewModel);
 
             return RedirectToAction("Details", "Analyses", new { id = viewModel.Id });
 
@@ -84,14 +86,36 @@ namespace ArchaeoAnalysisHub.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            analysesService.DeleteAnalysis(id);
+            _analysesService.DeleteAnalysis(id);
             return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public ActionResult Search(AnalysesViewModel viewModel)
         {
-            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+            if (viewModel.IsInSelectMode)
+            {
+                return RedirectToAction("SelectAnalyses", "Plots", new { query = viewModel.SearchTerm });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+            }
+        }
+
+        public ActionResult LoadMore(bool isInSelectMode = false, string searchedTerm = null)
+        {
+
+            _analysesLoader.Increment();
+            if (isInSelectMode)
+            {
+                return RedirectToAction("SelectAnalyses", "Plots", new { query = searchedTerm });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { query = searchedTerm });
+            }
+
         }
     }
 }

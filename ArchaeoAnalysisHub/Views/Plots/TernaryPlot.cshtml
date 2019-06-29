@@ -55,11 +55,12 @@
 @Html.Partial("_CreateTernaryPlotPartial", Model)
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div id="plot"></div>
     </div>
-    <div class="col-md-4">
-        <ul id="analyses-list"></ul>
+    <div class="col-md-3">
+        <ul id="analyses-list">Ploted analyses:</ul>
+        <ul id="nodata-list">No data for selected symbols:</ul>
     </div>
 </div>
 
