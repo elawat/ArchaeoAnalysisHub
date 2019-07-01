@@ -47,10 +47,11 @@
                     }
                 </div>
                 <div class="col-sm-5">
-                    <h4 class="card-title">
+                    <h4>@analysis.Name</h4>
+                    <p class="card-title">
                         Artefact:
                         @Html.ActionLink(analysis.Sample.Artefact.Name, "Details", "Artefacts", new { id = analysis.Sample.Artefact.Id }, new { @class = "link-details" })
-                    </h4>
+                    </p>
                     <p>by @analysis.Sample.Artefact.Owner.Name | @analysis.Sample.Artefact.Country</p>
                     <p>@analysis.Sample.Artefact.ArtefactType.Name</p>
                     <p>

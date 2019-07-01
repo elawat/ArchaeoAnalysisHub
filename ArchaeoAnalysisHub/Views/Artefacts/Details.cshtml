@@ -27,11 +27,14 @@
         <div class="property">Added date:</div>
         <div>@Html.DisplayFor(m => m.AddedDate)</div>
     </div>
-    <div class="col-md-2">
-        @Html.ActionLink("Edit", "Edit", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
-        |
-        @Html.ActionLink("Delete", "Delete", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
-    </div>
+    @if (Model.ShowActionButtons)
+    {
+        <div class="col-md-2">
+            @Html.ActionLink("Edit", "Edit", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
+            |
+            @Html.ActionLink("Delete", "Delete", "Artefacts", new { id = @Model.Id }, new { @class = "link-details" })
+        </div>
+    }
 </div>
 <div class="row">
     <div class="col-md-5">

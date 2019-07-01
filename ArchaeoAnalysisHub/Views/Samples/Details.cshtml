@@ -8,6 +8,8 @@
 <h2 class="headline">@Model.Artefact.Name | sample @Model.Id</h2>
 <div class="row">
     <div class="col-md-5">
+        <div class="property">@Html.DisplayNameFor(m => m.Name):</div>
+        <div>@Html.DisplayFor(m => m.Name)</div>
         <div class="property">@Html.DisplayNameFor(m => m.SampleType.Name):</div>
         <div>@Html.DisplayFor(m => m.SampleType.Name)</div>
         <div class="property">@Html.DisplayNameFor(m => m.Artefact.Name):</div>
@@ -28,12 +30,15 @@
         <div class="property">Added date:</div>
         <div>@Html.DisplayFor(m => m.AddedDate)</div>
     </div>
-    <div class="col-md-2">
-        @Html.ActionLink("Edit", "Edit", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
-        |
-        @Html.ActionLink("Delete", "Delete", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
+    @if (Model.ShowActionButtons)
+    {
+        <div class="col-md-2">
+            @Html.ActionLink("Edit", "Edit", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
+            |
+            @Html.ActionLink("Delete", "Delete", "Samples", new { id = @Model.Id }, new { @class = "link-details" })
+        </div>
+    }
     </div>
-</div>
 <div class="row">
     <div class="col-md-5">
         <h3>Analyses</h3>

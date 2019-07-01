@@ -1,9 +1,9 @@
 ﻿@model ArchaeoAnalysisHub.ViewModels.SampleFormViewModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = Model.Heading;
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="headline">@Model.Heading</h2>
@@ -13,14 +13,20 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
     <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(m => m.SampleType)
         @Html.DropDownListFor(m => m.SampleTypeId, new SelectList(Model.SampleTypes, "Id", "Name"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.SampleType)
     </div>
-
     <div class="form-group">
         @Html.LabelFor(m => m.Artefact)
         @Html.DropDownListFor(m => m.ArtefactId, new SelectList(Model.Artefacts, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ActionLink("Create an artefact", "Create", "Artefacts", null, new { @class = "link-details" })
         @Html.ValidationMessageFor(m => m.Artefact)
     </div>
     <div class="form-group">

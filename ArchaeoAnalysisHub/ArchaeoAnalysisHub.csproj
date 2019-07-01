@@ -452,6 +452,14 @@
     <Compile Include="Migrations\201906131726598_RenamedAllToArtefact.Designer.cs">
       <DependentUpon>201906131726598_RenamedAllToArtefact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907011829025_AddedNameForSampleAndAnalysis.cs" />
+    <Compile Include="Migrations\201907011829025_AddedNameForSampleAndAnalysis.Designer.cs">
+      <DependentUpon>201907011829025_AddedNameForSampleAndAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011837551_AddedRequiredForNames.cs" />
+    <Compile Include="Migrations\201907011837551_AddedRequiredForNames.Designer.cs">
+      <DependentUpon>201907011837551_AddedRequiredForNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analysis.cs" />
     <Compile Include="Models\AnalysisDataPoint.cs" />
@@ -1540,6 +1548,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906131726598_RenamedAllToArtefact.resx">
       <DependentUpon>201906131726598_RenamedAllToArtefact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011829025_AddedNameForSampleAndAnalysis.resx">
+      <DependentUpon>201907011829025_AddedNameForSampleAndAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011837551_AddedRequiredForNames.resx">
+      <DependentUpon>201907011837551_AddedRequiredForNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

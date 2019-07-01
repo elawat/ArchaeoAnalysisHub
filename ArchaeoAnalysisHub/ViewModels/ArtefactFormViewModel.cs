@@ -33,6 +33,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public System.DateTime AddedDate { get; set; }
         [Required]
         public string Period { get; set; }
+        public bool ShowActionButtons { get; set; }
         public string Action
         {
             get

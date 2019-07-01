@@ -6,6 +6,7 @@ namespace ArchaeoAnalysisHub.ViewModels
     public class AnalysisSummary
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public Sample Sample { get; set; }
         public AnalysisType AnalysisType { get; set; }
         public bool IsBulk { get; set; }

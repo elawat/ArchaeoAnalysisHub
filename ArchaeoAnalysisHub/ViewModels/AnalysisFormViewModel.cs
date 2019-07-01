@@ -12,6 +12,8 @@ namespace ArchaeoAnalysisHub.ViewModels
     {
         public int Id { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
         public int SampleId { get; set; }
         public Sample Sample { get; set; }
         [Required]

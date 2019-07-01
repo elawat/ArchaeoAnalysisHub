@@ -18,6 +18,7 @@ namespace ArchaeoAnalysisHub.Controllers
 
         public ActionResult Details(int id)
         {
+            var userId = User.Identity.GetUserId();
             var artefact = repository.GetArtefact(id);
             var viewModel = new ArtefactFormViewModel()
             {
@@ -27,11 +28,17 @@ namespace ArchaeoAnalysisHub.Controllers
                 ArtefactType = artefact.ArtefactType,
                 Country = artefact.Country,
                 Site = artefact.Site,
+                OwnerId = artefact.OwnerId,
                 Owner = artefact.Owner,
                 Samples = artefact.Samples,
                 AddedDate = artefact.AddedDate,
                 Period = artefact.Period
             };
+
+            if (viewModel.OwnerId == userId)
+            {
+                viewModel.ShowActionButtons = true;
+            }
 
             return View(viewModel);
         }

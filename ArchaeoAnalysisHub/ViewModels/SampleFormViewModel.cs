@@ -12,6 +12,8 @@ namespace ArchaeoAnalysisHub.ViewModels
     {
         public int Id { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
         [Display(Name = "Analysed")]
         public bool IsAnalysed { get; set; }
         [Required]
@@ -31,6 +33,7 @@ namespace ArchaeoAnalysisHub.ViewModels
         public IEnumerable<SampleType> SampleTypes { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime AddedDate { get; set; }
+        public bool ShowActionButtons { get; set; }
 
         public string Action
         {

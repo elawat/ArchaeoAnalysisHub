@@ -18,10 +18,12 @@ namespace ArchaeoAnalysisHub.Controllers
 
         public ActionResult Details(int id)
         {
+            var userId = User.Identity.GetUserId();
             var sample = repository.GetSample(id);
             var viewModel = new SampleFormViewModel()
             {
                 Id = sample.Id,
+                Name = sample.Name,
                 IsAnalysed = sample.IsAnalysed,
                 ArtefactId = sample.ArtefactId,
                 Artefact = sample.Artefact,
@@ -34,6 +36,11 @@ namespace ArchaeoAnalysisHub.Controllers
                 AddedDate = sample.AddedDate
             };
 
+            if (sample.OwnerId == userId)
+            {
+                viewModel.ShowActionButtons = true;
+            }
+
             return View(viewModel);
         }
 
@@ -45,6 +52,7 @@ namespace ArchaeoAnalysisHub.Controllers
             {
                 Heading = "Edit a Sample",
                 Id = sample.Id,
+                Name = sample.Name,
                 IsAnalysed = sample.IsAnalysed,
                 ArtefactId = sample.ArtefactId,
                 Artefact = sample.Artefact,
@@ -110,6 +118,7 @@ namespace ArchaeoAnalysisHub.Controllers
 
             var artefact = new Sample
             {
+                Name = viewModel.Name,
                 IsAnalysed = viewModel.IsAnalysed,
                 ArtefactId = viewModel.ArtefactId,
                 SampleTypeId = viewModel.SampleTypeId,

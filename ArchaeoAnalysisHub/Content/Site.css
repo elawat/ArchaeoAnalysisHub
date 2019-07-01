@@ -149,6 +149,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 .section {
     margin-top: 15px;
     margin-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .headline {
@@ -238,8 +240,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 /* The Close Button */
 .close {
     position: absolute;
-    top: 70px;
-    right: 35px;
+    top: 60px;
+    right: 60px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;

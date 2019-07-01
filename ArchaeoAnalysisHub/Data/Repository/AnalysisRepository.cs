@@ -36,8 +36,9 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 results = results
                     .Where(a =>
                     Convert.ToString(a.Id).ToLower().Equals(query.ToLower()) ||
+                    a.Name.ToLower().Contains(query.ToLower()) ||
                     a.Owner.Name.ToLower().Contains(query.ToLower()) ||
-                    a.AnalysisType.Name.ToLower().Equals(query.ToLower()) ||
+                    a.AnalysisType.Name.ToLower().Contains(query.ToLower()) ||
                     a.Sample.SampleType.Name.ToLower().Contains(query.ToLower()) ||
                     a.Sample.Artefact.Name.ToLower().Contains(query.ToLower()) ||
                     a.Sample.Artefact.Site.ToLower().Contains(query.ToLower()) ||
@@ -134,6 +135,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Single();
 
             analysis.SampleId = updateAnalysis.SampleId;
+            analysis.Name = updateAnalysis.Name;
             analysis.AnalysisTypeId = updateAnalysis.AnalysisTypeId;
             analysis.IsBulk = updateAnalysis.IsBulk;
             analysis.IsNormalised = updateAnalysis.IsNormalised;

@@ -32,6 +32,7 @@ namespace ArchaeoAnalysisHub.BLL
                         select new AnalysisSummary()
                         {
                             Id = analysis.Id,
+                            Name = analysis.Name,
                             Sample = analysis.Sample,
                             AnalysisType = analysis.AnalysisType,
                             IsBulk = analysis.IsBulk,
@@ -106,6 +107,7 @@ namespace ArchaeoAnalysisHub.BLL
             {
                 AnalysisDataPoints = viewModel.AnalysisDataPoints,
                 Id = viewModel.Id,
+                Name = viewModel.Name,
                 SampleId = viewModel.SampleId,
                 AnalysisTypeId = viewModel.AnalysisTypeId,
                 IsBulk = viewModel.IsBulk,

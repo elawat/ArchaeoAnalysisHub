@@ -56,6 +56,7 @@ namespace ArchaeoAnalysisHub.Data.Repository
                 .Where(x => x.Id == updatedSample.Id)
                 .Single();
 
+            sample.Name = updatedSample.Name;
             sample.IsAnalysed = updatedSample.IsAnalysed;
             sample.ArtefactId = updatedSample.ArtefactId;
             sample.SampleTypeId = updatedSample.SampleTypeId;
